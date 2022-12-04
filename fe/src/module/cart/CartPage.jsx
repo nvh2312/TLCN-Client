@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import CartHidden from "./CartHidden";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
-import PDF from "../../components/PDF/PDF";
+import PDF from "../../components/pdf/PDF";
 
 const CartPage = () => {
   const navigate = useNavigate();
