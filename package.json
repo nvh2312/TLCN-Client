@@ -1,0 +1,21 @@
+{
+  "name": "HC-Tech",
+  "version": "1.0.0",
+  "description": "For TLCN 2022",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd be && npm install  && cd ../fe && npm install && npm run build",
+    "start": "node be/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nvh2312/hc-laptop"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nvh2312/hc-laptop"
+  },
+  "homepage": "https://github.com/nvh2312/hc-laptop"
+}
