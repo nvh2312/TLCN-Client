@@ -51,7 +51,6 @@ const ChatStream = () => {
   const [client, setClient] = useState(null);
   const [channel, setChannel] = useState(null);
   const [role, setRole] = useState("user");
-  console.log(client);
 
   useEffect(() => {
     async function init() {

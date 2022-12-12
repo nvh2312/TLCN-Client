@@ -45,6 +45,14 @@ const FilterProduct = ({ data }) => {
 
   return (
     <div>
+      {data.length === 0 && (
+        <div className="h-[700px] bg-white flex items-center justify-center flex-col gap-y-6">
+          <img src="../images/search.png" alt="" className="w-[200px]" />
+          <span className="text-xl font-medium">
+            Không tìm thấy sản phẩm nào
+          </span>
+        </div>
+      )}
       <div className="grid-cols-4 grid gap-y-2">
         {data.length > 0 &&
           data.map((item, index) => (

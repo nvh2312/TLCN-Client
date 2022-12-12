@@ -16,7 +16,6 @@ export const createComment = createAsyncThunk(
 export const getComment = createAsyncThunk(
   "user/getComment",
   async (payload) => {
-    console.log(payload);
     const query = `page=${payload.page}&limit=3`;
     const response = await commentApi.getComment(payload.id, query);
     return response.data;

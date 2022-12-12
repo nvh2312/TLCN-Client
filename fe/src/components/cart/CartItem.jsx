@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const CartItem = ({ product }) => {
   const navigate = useNavigate();
-  console.log(product);
   const handleClick = () => {
     const path = slugify(product.product.title, { strict: true });
     navigate(`/${path}/${product.id}`);

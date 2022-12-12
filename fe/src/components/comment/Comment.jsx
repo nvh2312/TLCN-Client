@@ -104,7 +104,6 @@ const Comment = ({ id }) => {
 
   const handlePageClick = (values) => {
     setPage(values);
-    console.log("PageComment:", values);
   };
 
   return (
@@ -112,43 +111,34 @@ const Comment = ({ id }) => {
       {status === action_status.LOADING && (
         <div className="container bg-white rounded-lg p-5">
           <Skeleton className="w-2/3 h-5 rounded-md" />
-          <div className="w-[1200px] h-[350px] bg-white rounded-lg mx-auto mt-6  border-2 border-solid feelback">
-            <div className="flex flex-col items-center justify-center border-r-2 border-solid">
-              <div className="flex items-center gap-x-5 mb-5">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <span>/</span>
-                <Skeleton className="w-5 h-5 rounded-md" />
+
+          <div className="flex flex-col w-[1200px] mx-auto mt-10">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center justify-start gap-x-5">
+                <Skeleton className="w-12 h-12 rounded-full" />
+                <Skeleton className="w-[200px] h-4 rounded-md" />
               </div>
-              <div className="flex items-center gap-x-5">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-5 h-5 rounded-md" />
+              <div className="flex items-center justify-end gap-x-5">
+                <Skeleton className="w-[80px] h-4 rounded-md" />
+                <Skeleton className="w-[80px] h-4 rounded-md" />
               </div>
             </div>
-            <div className="flex flex-col items-center justify-center gap-y-5">
-              <div className="flex flex-row items-center justify-between gap-x-5 ">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-[700px] h-5 rounded-md" />
+            <Skeleton className="w-[300px] h-4 mt-4 rounded-md" />
+            <Skeleton className="w-[600px] h-4 mt-4 rounded-md" />
+          </div>
+          <div className="flex flex-col w-[1200px] mx-auto mt-10">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center justify-start gap-x-5">
+                <Skeleton className="w-12 h-12 rounded-full" />
+                <Skeleton className="w-[200px] h-4 rounded-md" />
               </div>
-              <div className="flex flex-row items-center justify-between gap-x-5 ">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-[700px] h-5 rounded-md" />
-              </div>
-              <div className="flex flex-row items-center justify-between gap-x-5 ">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-[700px] h-5 rounded-md" />
-              </div>
-              <div className="flex flex-row items-center justify-between gap-x-5 ">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-[700px] h-5 rounded-md" />
-              </div>
-              <div className="flex flex-row items-center justify-between gap-x-5 ">
-                <Skeleton className="w-5 h-5 rounded-md" />
-                <Skeleton className="w-[700px] h-5 rounded-md" />
+              <div className="flex items-center justify-end gap-x-5">
+                <Skeleton className="w-[80px] h-4 rounded-md" />
+                <Skeleton className="w-[80px] h-4 rounded-md" />
               </div>
             </div>
+            <Skeleton className="w-[300px] h-4 mt-4 rounded-md" />
+            <Skeleton className="w-[600px] h-4 mt-4 rounded-md" />
           </div>
           <div className="flex flex-col w-[1200px] mx-auto mt-10">
             <div className="flex items-center justify-between">

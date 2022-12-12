@@ -410,9 +410,9 @@ const ProductFilterPage = () => {
                   <img
                     src="../images/search.png"
                     alt=""
-                    className="w-[250px]"
+                    className="w-[200px]"
                   />
-                  <span className="text-2xl font-medium">
+                  <span className="text-xl font-medium">
                     Không tìm thấy sản phẩm nào
                   </span>
                 </div>

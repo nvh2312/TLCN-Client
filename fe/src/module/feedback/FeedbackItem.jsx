@@ -84,7 +84,7 @@ const FeedbackItem = ({ data }) => {
             </div>
             <div className="text-[#8f8f8f] font-semibold text-base">
               {data?.updateAt
-                ? format(new Date(data?.updateAt), "HH:mm")
+                ? format(new Date(data?.updateAt), "HH:mm") + "đã chỉnh sửa"
                 : format(new Date(data?.createdAt), "HH:mm")}
             </div>
           </div>

@@ -184,178 +184,194 @@ const UserOrder = () => {
       )}
       {status === action_status.SUCCEEDED && (
         <>
-          <Table>
-            <thead>
-              <tr>
-                <th>Mã đơn hàng</th>
-                <th>Ngày mua</th>
-                <th>Sản phẩm</th>
-                <th>Tổng tiền</th>
-                <th>Trạng thái</th>
-              </tr>
-            </thead>
-            <tbody>
-              {(state === "All" || state === undefined) && (
-                <>
-                  {order?.length > 0 &&
-                    order.map((item) => (
-                      <tr className="text-base" key={item._id}>
-                        <td
-                          className="cursor-pointer text-blue-600 hover:text-blue-900"
-                          onClick={() =>
-                            navigate(`/account/orders/${item._id}`)
-                          }
-                          title={item._id}
-                        >
-                          {item._id.slice(0, 10)}
-                        </td>
-                        <td>
-                          {format(new Date(item?.createdAt), "HH:mm")}
-                          &nbsp;&nbsp;
-                          {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                        </td>
-                        <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                        <td>{formatPrice(item.totalPrice)}</td>
-                        {item?.status === "Processed" && (
-                          <td>
-                            <span className="p-2 rounded-lg text-white bg-orange-400">
-                              Đang xử lý
-                            </span>
-                          </td>
-                        )}
-                        {item?.status === "Waiting Goods" && (
-                          <td>
-                            <span className="p-2 rounded-lg text-white bg-yellow-400">
-                              Đợi lấy hàng
-                            </span>
-                          </td>
-                        )}
-                        {item?.status === "Cancelled" && (
-                          <td>
-                            <span className="p-2 rounded-lg text-white bg-red-400">
-                              Đã hủy đơn
-                            </span>
-                          </td>
-                        )}
-                        {item?.status === "Success" && (
-                          <td>
-                            <span className="p-2 rounded-lg text-white  bg-green-400">
-                              Thành công
-                            </span>
-                          </td>
-                        )}
-                      </tr>
-                    ))}
-                </>
-              )}
-              {state === "Processed" && (
-                <>
-                  {order?.length > 0 &&
-                    order.map((item) => (
-                      <tr className="text-base" key={item._id}>
-                        <td
-                          className="cursor-pointer text-blue-600 hover:text-blue-900"
-                          onClick={() =>
-                            navigate(`/account/orders/${item._id}`)
-                          }
-                          title={item._id}
-                        >
-                          {item._id.slice(0, 10)}
-                        </td>
-                        <td>
-                          {format(new Date(item?.createdAt), "HH:mm")}
-                          &nbsp;&nbsp;
-                          {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                        </td>
-                        <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                        <td>{formatPrice(item.totalPrice)}</td>
-                        <td>
-                          <span className="p-2 rounded-lg text-white bg-orange-400">
-                            Đang xử lý
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                </>
-              )}
-              {state === "Cancelled" && (
-                <>
-                  {order?.length > 0 &&
-                    order.map((item) => (
-                      <tr className="text-base" key={item._id}>
-                        <td
-                          className="cursor-pointer text-blue-600 hover:text-blue-900"
-                          onClick={() =>
-                            navigate(`/account/orders/${item._id}`)
-                          }
-                          title={item._id}
-                        >
-                          {item._id.slice(0, 10)}
-                        </td>
-                        <td>
-                          {format(new Date(item?.createdAt), "HH:mm")}
-                          &nbsp;&nbsp;
-                          {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                        </td>
-                        <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                        <td>{formatPrice(item.totalPrice)}</td>
+          {order?.length === 0 && (
+            <div className="bg-white container rounded-lg h-[400px] flex flex-col items-center justify-center gap-y-3 ">
+              <img
+                src="../images/logo-cart.png"
+                alt=""
+                className="w-[250px] h-[250px]"
+              />
+              <span className="text-lg font-medium text-gray-400">
+                Hiện không có đơn hàng nào
+              </span>
+            </div>
+          )}
+          {order?.length > 0 && (
+            <>
+              {" "}
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Ngày mua</th>
+                    <th>Sản phẩm</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(state === "All" || state === undefined) && (
+                    <>
+                      {order?.length > 0 &&
+                        order.map((item) => (
+                          <tr className="text-base" key={item._id}>
+                            <td
+                              className="cursor-pointer text-blue-600 hover:text-blue-900"
+                              onClick={() =>
+                                navigate(`/account/orders/${item._id}`)
+                              }
+                              title={item._id}
+                            >
+                              {item._id.slice(0, 10)}
+                            </td>
+                            <td>
+                              {format(new Date(item?.createdAt), "HH:mm")}
+                              &nbsp;&nbsp;
+                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
+                            </td>
+                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                            <td>{formatPrice(item.totalPrice)}</td>
+                            {item?.status === "Processed" && (
+                              <td>
+                                <span className="p-2 rounded-lg text-white bg-orange-400">
+                                  Đang xử lý
+                                </span>
+                              </td>
+                            )}
+                            {item?.status === "Waiting Goods" && (
+                              <td>
+                                <span className="p-2 rounded-lg text-white bg-yellow-400">
+                                  Đợi lấy hàng
+                                </span>
+                              </td>
+                            )}
+                            {item?.status === "Cancelled" && (
+                              <td>
+                                <span className="p-2 rounded-lg text-white bg-red-400">
+                                  Đã hủy đơn
+                                </span>
+                              </td>
+                            )}
+                            {item?.status === "Success" && (
+                              <td>
+                                <span className="p-2 rounded-lg text-white  bg-green-400">
+                                  Thành công
+                                </span>
+                              </td>
+                            )}
+                          </tr>
+                        ))}
+                    </>
+                  )}
+                  {state === "Processed" && (
+                    <>
+                      {order?.length > 0 &&
+                        order.map((item) => (
+                          <tr className="text-base" key={item._id}>
+                            <td
+                              className="cursor-pointer text-blue-600 hover:text-blue-900"
+                              onClick={() =>
+                                navigate(`/account/orders/${item._id}`)
+                              }
+                              title={item._id}
+                            >
+                              {item._id.slice(0, 10)}
+                            </td>
+                            <td>
+                              {format(new Date(item?.createdAt), "HH:mm")}
+                              &nbsp;&nbsp;
+                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
+                            </td>
+                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                            <td>{formatPrice(item.totalPrice)}</td>
+                            <td>
+                              <span className="p-2 rounded-lg text-white bg-orange-400">
+                                Đang xử lý
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                    </>
+                  )}
+                  {state === "Cancelled" && (
+                    <>
+                      {order?.length > 0 &&
+                        order.map((item) => (
+                          <tr className="text-base" key={item._id}>
+                            <td
+                              className="cursor-pointer text-blue-600 hover:text-blue-900"
+                              onClick={() =>
+                                navigate(`/account/orders/${item._id}`)
+                              }
+                              title={item._id}
+                            >
+                              {item._id.slice(0, 10)}
+                            </td>
+                            <td>
+                              {format(new Date(item?.createdAt), "HH:mm")}
+                              &nbsp;&nbsp;
+                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
+                            </td>
+                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                            <td>{formatPrice(item.totalPrice)}</td>
 
-                        <td>
-                          <span className="p-2 rounded-lg text-white bg-red-400">
-                            Đã hủy đơn
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                </>
-              )}
-              {state === "Success" && (
-                <>
-                  {order?.length > 0 &&
-                    order.map((item) => (
-                      <tr className="text-base" key={item._id}>
-                        <td
-                          className="cursor-pointer text-blue-600 hover:text-blue-900"
-                          onClick={() =>
-                            navigate(`/account/orders/${item._id}`)
-                          }
-                          title={item._id}
-                        >
-                          {item._id.slice(0, 10)}
-                        </td>
-                        <td>
-                          {format(new Date(item?.createdAt), "HH:mm")}
-                          &nbsp;&nbsp;
-                          {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                        </td>
-                        <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                        <td>{formatPrice(item.totalPrice)}</td>
+                            <td>
+                              <span className="p-2 rounded-lg text-white bg-red-400">
+                                Đã hủy đơn
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                    </>
+                  )}
+                  {state === "Success" && (
+                    <>
+                      {order?.length > 0 &&
+                        order.map((item) => (
+                          <tr className="text-base" key={item._id}>
+                            <td
+                              className="cursor-pointer text-blue-600 hover:text-blue-900"
+                              onClick={() =>
+                                navigate(`/account/orders/${item._id}`)
+                              }
+                              title={item._id}
+                            >
+                              {item._id.slice(0, 10)}
+                            </td>
+                            <td>
+                              {format(new Date(item?.createdAt), "HH:mm")}
+                              &nbsp;&nbsp;
+                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
+                            </td>
+                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                            <td>{formatPrice(item.totalPrice)}</td>
 
-                        <td>
-                          <span className="p-2 rounded-lg text-white  bg-green-400">
-                            Thành công
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                </>
-              )}
-            </tbody>
-          </Table>
-
-          <div className="flex items-center justify-center mt-5">
-            <Pagination
-              activePage={page}
-              nextPageText={">"}
-              prevPageText={"<"}
-              totalItemsCount={totalPage}
-              itemsCountPerPage={1}
-              firstPageText={"<<"}
-              lastPageText={">>"}
-              linkClass="page-num"
-              onChange={handlePageClick}
-            />
-          </div>
+                            <td>
+                              <span className="p-2 rounded-lg text-white  bg-green-400">
+                                Thành công
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                    </>
+                  )}
+                </tbody>
+              </Table>
+              <div className="flex items-center justify-center mt-5">
+                <Pagination
+                  activePage={page}
+                  nextPageText={">"}
+                  prevPageText={"<"}
+                  totalItemsCount={totalPage}
+                  itemsCountPerPage={1}
+                  firstPageText={"<<"}
+                  lastPageText={">>"}
+                  linkClass="page-num"
+                  onChange={handlePageClick}
+                />
+              </div>
+            </>
+          )}
         </>
       )}
       {status === action_status.FAILED && (

@@ -23,8 +23,6 @@ const CommentItem = ({ comment }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const { current } = useSelector((state) => state.user);
-  console.log(current);
-  console.log("CommentItem", comment);
 
   const handleSend = () => {
     if (current === null) {
@@ -136,7 +134,9 @@ const CommentItem = ({ comment }) => {
             {comment?.updateAt
               ? formatDistance(Date.now(), new Date(comment?.updateAt), {
                   locale: viLocale,
-                }) + " trước"
+                }) +
+                " trước" +
+                " (đã chỉnh sửa)"
               : formatDistance(Date.now(), new Date(comment?.createdAt), {
                   locale: viLocale,
                 }) + " trước"}
