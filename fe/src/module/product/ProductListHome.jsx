@@ -57,7 +57,7 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
           bg === "bg1" ? 'bg-[url("../images/bg-laptop.png")] h-[460px]' : ""
         }
         ${bg === "bg2" ? 'bg-[url("../images/bg-laptop-1.png")] h-[460px]' : ""}
-           bg-no-repeat w-full bg-cover rounded-lg `}
+           bg-no-repeat w-full bg-cover rounded-lg relative z-20`}
       >
         <Swiper
           modules={[Navigation, Pagination, EffectCards]}
