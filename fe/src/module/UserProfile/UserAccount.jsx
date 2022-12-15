@@ -98,7 +98,7 @@ const UserAccount = () => {
       gender: user?.gender,
     });
     setImage(getValues("image"));
-  }, [status]);
+  }, [status, user]);
 
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];

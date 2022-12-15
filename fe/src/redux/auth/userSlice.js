@@ -105,6 +105,7 @@ const userSlice = createSlice({
       localStorage.removeItem("keyword");
       localStorage.removeItem("tokenStream");
       state.current = null;
+      state.user = null;
     },
     refresh: (state, action) => {
       state.update = false;
