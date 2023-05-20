@@ -7,7 +7,7 @@ const ProductOrder = ({ data }) => {
       {data?.length > 0 &&
         data.map((item) => (
           <div
-            className="flex items-start justify-between w-full"
+            className="flex items-start flex-col sm:flex-row justify-between w-full"
             key={item.product._id}
           >
             <div className="flex items-start gap-x-2">
@@ -17,13 +17,13 @@ const ProductOrder = ({ data }) => {
                 className="w-[120px] h-[120px]"
               />
               <div className="flex flex-col items-start gap-y-2">
-                <span className="text-base font-medium">
+                <span className="mt-5 text-base font-medium">
                   {item?.product.title}
                 </span>
                 <span className="text-sm">SKU: {item?.product?._id}</span>
               </div>
             </div>
-            <div className="flex flex-col items-end">
+            <div className="flex flex-col self-end sm:self-start items-end mt-5">
               <span className="text-base font-medium">
                 {formatPrice(item?.product?.promotion)}
               </span>

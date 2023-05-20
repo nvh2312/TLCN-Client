@@ -36,8 +36,8 @@ const ProfileStyles = styled.div`
 
   @media screen and (max-width: 480px) {
     .avatar {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
     }
   }
   @media screen and (min-width: 768px) {
