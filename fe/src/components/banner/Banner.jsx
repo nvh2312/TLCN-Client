@@ -9,8 +9,8 @@ import "swiper/css/autoplay";
 
 const Banner = () => {
   return (
-    <div className="mt-5 md:mt-7 lg:mt-10 px-[8px] md:px-[20px]">
-      <div className="container max-w-[100vw]">
+    <div className=" max-w-[100vw] mt-5 md:mt-7 lg:mt-10 px-[8px] md:px-[20px]">
+      <div className="container">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           slidesPerView={1}

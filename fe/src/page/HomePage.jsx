@@ -104,7 +104,7 @@ const HomePage = () => {
         </>
       )}
       {status === action_status.SUCCEEDED && (
-        <>
+        <div className="max-w-full w-full">
           <Banner />
           <ProductListHome data={product} bg="bg1" className="pt-5 md:pt-10 lg:pt-20" />
           <ProductListHome data={product} bg="bg2" className="pt-5 md:pt-10 lg:pt-20" />
@@ -115,7 +115,7 @@ const HomePage = () => {
             totalPage={totalPage}
           />
           <BackToTopButton />
-        </>
+        </div>
       )}
     </>
   );
