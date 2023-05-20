@@ -103,9 +103,9 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="w-[430px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[500px] overflow-y-auto overflow-x-hidden"
+            bodyClassName="max-w-[430px] max-h-[500px] w-[430px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[500px] overflow-y-auto overflow-x-hidden"
           >
-            <table className="table-product items-center table-fixed w-full max-w-full">
+            <table className="table-product items-center table-fixed w-full">
               <thead>
                 <tr>
                   <th></th>
