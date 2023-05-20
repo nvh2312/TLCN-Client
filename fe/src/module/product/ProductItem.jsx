@@ -35,8 +35,12 @@ const ProductItem = ({
         <h3 className="line-clamp-2 mb-2 text-sm font-medium">
           {product?.title}
         </h3>
+        {product?.inventory >= 5 && (
+          <span className="sm:hidden h-2 text-orange-500 font-medium mb-2 text-sm">
+          </span>
+        )}
         {product?.inventory < 5 && product?.inventory > 0 && (
-          <span className="text-orange-500 font-medium mb-2 text-sm">
+          <span className="sm:h-auto h-10 text-orange-500 font-medium mb-2 text-sm">
             Chỉ còn {product?.inventory} sản phẩm
           </span>
         )}
@@ -75,7 +79,7 @@ const ProductItem = ({
             </span>
             
              <span className="sm:hidden text-sm line-through text-slate-400">
-              {product?.price/1000000 + " triệu "}
+              {product?.price/1000000 + " tr "}
             </span>
             <span className="text-blue text-sm"> - {product?.percent}%</span>
           </div>

@@ -376,7 +376,7 @@ const PaymentPage = () => {
                   ))}
               </div>
             </div>
-            <div className="flex flex-col px-5 lg:mt-10 rounded-lg py-5 bg-white md:h-[560px] h-[320px] lg:h-[235px]">
+            <div className="flex flex-col px-5 lg:mt-10 rounded-lg py-5 bg-white md:h-[560px] h-[365px] sm:h-[320px] lg:h-[235px]">
               <span className="text-xl font-bold">Phương thức thanh toán</span>
               <div className="flex flex-col lg:flex-row items-center justify-between mt-10 px-16 ">
                 <button
