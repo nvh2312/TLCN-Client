@@ -51,7 +51,7 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
     navigate(`/${path}/${item._id}`);
   };
   return (
-    <div className={`${className} w-[98vw]`}>
+    <div className={`${className} max-w-[98vw]`}>
       <div
         className={`container pt-[60px] md:pt-[40px] lg:pt-0 ${
           bg === "bg1" ? 'bg-[url("../images/bg-laptop.png")] h-[460px]' : ""
@@ -96,7 +96,7 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
         </Swiper>
       </div>
       {selectedItems.length === 2 && (
-        <div>
+        <div className="max-w-[100vw]">
           <ModalAdvanced
             visible={showModal}
             onClose={() => {

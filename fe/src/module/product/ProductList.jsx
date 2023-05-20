@@ -103,7 +103,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
         </div>
       </div>
       {selectedItems.length === 2 && (
-        <div>
+        <div className="max-w-[100vw]">
           <ModalAdvanced
             visible={showModal}
             onClose={() => {
