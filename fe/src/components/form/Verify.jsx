@@ -19,14 +19,18 @@ const StyledDiv = styled.div`
     width: 50vw;
     max-width: 480px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     width: 55vw;
     max-width: 450px;
   }
 
   @media (max-width: 480px) {
     width: 90vw;
-    max-width: 300px;
+    max-width: 250px;
+  }
+  @media (max-width: 400px) {
+    width: 80vw;
+    max-width: 245px;
   }
 `;
 const schema = yup.object({
@@ -89,11 +93,9 @@ const Verify = () => {
               type="submit"
               isLoading={isSubmitting}
               disable={isSubmitting}
-              style={{
-                width: "150px",
-                margin: "0 10px",
-              }}
-              height="50px"
+              height={"50px"}
+              width={"150px"}
+              margin={"0 10px"}
             >
               <span className="text-base font-medium">Xác nhận</span>
             </Button>
