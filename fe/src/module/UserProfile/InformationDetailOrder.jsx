@@ -204,7 +204,7 @@ const InformationDetailOrder = () => {
             <div className="bg-white flex flex-col items-start p-5 rounded-lg text-lg gap-y-3">
               <span className=" font-medium text-lg">Thông tin đơn hàng</span>
               <div className="flex flex-col items-start">
-                <div className="flex items-center gap-x-2">
+                <div className="flex flex-col sm:flex-row items-center gap-x-2">
                   <span className=" font-medium text-base">
                     Trạng thái đơn hàng:
                   </span>
@@ -229,7 +229,7 @@ const InformationDetailOrder = () => {
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-x-2">
+                <div className="flex flex-col sm:flex-row items-center gap-x-2">
                   <span className=" font-medium text-base">Thời gian tạo:</span>
                   <span> {format(new Date(orderId?.createdAt), "HH:mm")} </span>
                   <span>

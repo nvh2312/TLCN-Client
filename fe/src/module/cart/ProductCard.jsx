@@ -14,7 +14,7 @@ const ProductCard = ({ data }) => {
         alt=""
         className="w-[100px] h-[100px] object-cover border-2 border-solid"
       />
-      <div className="flex flex-col items-start flex-wrap gap-y-1">
+      <div className="flex flex-col items-start flex-wrap overflow-hidden gap-y-1">
         <span
           className="text-base font-medium hover:text-blue-800 cursor-pointer line-clamp-2"
           title={data.product.title}

@@ -47,25 +47,25 @@ const ListAddress = () => {
           <div className="w-full bg-white  border-2 border-dotted px-5 py-5 rounded-lg flex items-center justify-between my-7 focus:border-solid">
             <div className="flex flex-col justify-between gap-y-3 ">
               <div className="flex items-center gap-x-5 mb-2">
-                <Skeleton className="w-[100px] h-4 rounded-md" />
-                <Skeleton className="w-[100px] h-4 rounded-md" />
+                <Skeleton className="w-[50px] md:w-[100px]lg:w-[200px] xl:w-[250px] h-4 rounded-md" />
+                <Skeleton className="w-[50px] md:w-[100px]lg:w-[200px] xl:w-[250px] h-4 rounded-md" />
               </div>
-              <Skeleton className="w-[600px] h-4 rounded-md" />
+              <Skeleton className="w-[300px] md:w-[450px] lg:w-[600px] xl:w-[700px] h-4 rounded-md" />
               <Skeleton className="w-[250px] h-4 rounded-md" />
             </div>
           </div>
           <div className="w-full bg-white  border-2 border-dotted px-5 py-5 rounded-lg flex items-center justify-between my-7 focus:border-solid">
             <div className="flex flex-col justify-between gap-y-3 ">
               <div className="flex items-center gap-x-5 mb-2">
-                <Skeleton className="w-[100px] h-4 rounded-md" />
-                <Skeleton className="w-[100px] h-4 rounded-md" />
+                <Skeleton className="w-[50px] md:w-[100px]lg:w-[200px] xl:w-[250px] h-4 rounded-md" />
+                <Skeleton className="w-[50px] md:w-[100px]lg:w-[200px] xl:w-[250px] h-4 rounded-md" />
               </div>
-              <Skeleton className="w-[600px] h-4 rounded-md" />
+              <Skeleton className="w-[300px] md:w-[450px] lg:w-[600px] xl:w-[700px]" />
               <Skeleton className="w-[250px] h-4 rounded-md" />
             </div>
           </div>
         </>
-      )}
+      )} 
       {status === action_status.SUCCEEDED &&
         address.length > 0 &&
         address.map((item, index) => (

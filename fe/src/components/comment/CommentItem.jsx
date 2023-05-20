@@ -143,7 +143,7 @@ const CommentItem = ({ comment }) => {
           </div>
         </div>
 
-        <div className="w-full bg-[#f3f4f6] mt-3 rounded-lg flex flex-col p-5  justify-between gap-y-4 ml-12 ">
+        <div className="2xl:w-full bg-[#f3f4f6] mt-3 rounded-lg flex flex-col p-5  justify-between gap-y-4 ml-12 ">
           <div className="flex items-center justify-start gap-x-2 flex-wrap">
             <span className="text-base font-medium">
               {comment?.parent !== null ? "Trả lời: " : "Hỏi đáp: "}

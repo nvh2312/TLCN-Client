@@ -10,7 +10,25 @@ import { toast } from "react-toastify";
 import { verifyResetPassword } from "../../redux/auth/userSlice";
 import { useDispatch } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
+import styled from "styled-components";
 
+const StyledDiv = styled.div`
+  width: 530px;
+
+  @media (max-width: 1024px) {
+    width: 50vw;
+    max-width: 480px;
+  }
+  @media (max-width: 768px) {
+    width: 55vw;
+    max-width: 450px;
+  }
+
+  @media (max-width: 480px) {
+    width: 90vw;
+    max-width: 300px;
+  }
+`;
 const schema = yup.object({
   verify: yup
     .string()
@@ -59,13 +77,14 @@ const Verify = () => {
       <form onSubmit={handleSubmit(handleVerify)} autoComplete="off">
         <Field>
           <div className="flex items-center">
-            <Input
-              name="verify"
-              type="text"
-              placeholder="Mời bạn nhập mã xác nhận"
-              control={control}
-              style={{ width: "530px" }}
-            ></Input>
+            <StyledDiv>
+              <Input
+                name="verify"
+                type="text"
+                placeholder="Mời bạn nhập mã xác nhận"
+                control={control}
+              ></Input>
+            </StyledDiv>
             <Button
               type="submit"
               isLoading={isSubmitting}

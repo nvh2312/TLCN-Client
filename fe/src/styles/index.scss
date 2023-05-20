@@ -101,18 +101,73 @@ input::-webkit-inner-spin-button {
   height: 50px;
   border-radius: 8px;
 }
-
+.product-info {
+  .option {
+    @media screen and (min-width: 1024px) and (max-width: 1320px) {
+      flex-direction: column;
+    }
+  }
+  .edit {
+    @media screen and (min-width: 1024px) and (max-width: 1320px) {
+      margin-top: 10px;
+      width: 180px;
+      font-size: 11px;
+    }
+    @media screen and (min-width: 769px) and (max-width: 940px) {
+      margin-top: 10px;
+      width: 100px;
+      font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      margin-top: 10px;
+      width: 100px;
+      font-size: 14px;
+    }
+  }
+  .short-edit {
+    @media screen and (min-width: 1024px) and (max-width: 1143px) {
+      overflow: hidden;
+    }
+  }
+}
 // ProductDetailPage
 .ProductDetail {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 350px;
   padding: 40px 0px;
   gap: 0 30px;
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+  }
 }
 .Information-product {
   display: grid;
   grid-template-columns: 360px minmax(0, 1fr);
+  @media (min-width: 680px)and (max-width: 768px) {
+    grid-template-columns: 580px minmax(0, 1fr);
+    }
+  @media (min-width: 600px)and (max-width: 679px) {
+    grid-template-columns: 580px minmax(0, 1fr);
+    }
+  @media (min-width: 551px)and (max-width: 599px) {
+  grid-template-columns: 500px minmax(0, 1fr);
+  }
+  @media (max-width: 550px) {
+    grid-template-columns: 450px minmax(0, 1fr);
+    }
+
 }
+@media (max-width: 768px) {
+  .Information-product > *:nth-child(1) {
+    align-items: center;
+    grid-row: 1;
+  }
+
+  .Information-product > *:nth-child(2) {
+    grid-row: 2;
+  }
+}
+
 .ProductDescription {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 460px;
@@ -120,6 +175,9 @@ input::-webkit-inner-spin-button {
   width: 100%;
   background-color: white;
   border-radius: 10px;
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr;
+  }
 }
 .product-description {
   padding: 30px;
@@ -131,8 +189,6 @@ input::-webkit-inner-spin-button {
 
 table {
   border-collapse: collapse;
-  // table-layout: fixed;
-  // width: 100%;
 }
 td {
   text-align: left;
@@ -141,7 +197,6 @@ td {
 .table-product tr:nth-child(even) {
   background-color: #f6f6f6;
 }
-
 // cart
 .cart {
   display: grid;
@@ -149,7 +204,12 @@ td {
   gap: 0 10px;
   align-items: flex-start;
 }
-
+@media (max-width: 1280px) {
+  .cart {
+    display: flex;
+    flex-direction: column;
+  }
+}
 // payment
 .payment {
   display: grid;
@@ -157,6 +217,46 @@ td {
   gap: 0 20px;
   margin-top: 50px;
   align-items: flex-start;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .payment {
+    grid-template-columns: 1fr 1fr;
+  }
+  .payment > *:nth-child(1) {
+    grid-row: 1;
+    grid-column: 1 / span 2;
+  }
+  .payment > *:nth-child(2) {
+    grid-row: 2;
+    grid-column: 1;
+  }
+  .payment > *:nth-child(3) {
+    grid-row: 2;
+    grid-column: 2;
+  }
+  .payment > *:nth-child(4) {
+    grid-row: 3;
+    grid-column: 1 / span 2;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .payment {
+    grid-template-columns: 1fr;
+  }
+  .payment > *:nth-child(1) {
+    grid-row: 1;
+  }
+  .payment > *:nth-child(2) {
+    grid-row: 2;
+  }
+  .payment > *:nth-child(3) {
+    grid-row: 3;
+  }
+  .payment > *:nth-child(4) {
+    grid-row: 4;
+  }
 }
 
 .cart-home:hover .cart-child {
@@ -196,11 +296,20 @@ td {
   align-items: flex-start;
   max-height: fit-content;
 }
+@media (max-width: 1280px) {
+  .wrapper-product {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 //feelback
 .feelback {
   display: grid;
   grid-template-columns: 350px minmax(0, 1fr);
+  @media (max-width: 1279px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -240,6 +349,10 @@ input[type="range"]::-webkit-slider-thumb {
   align-items: flex-start;
   border: 5px solid #dbdbdb;
   border-radius: 8px;
+  @media (max-width:768px) {
+    grid-template-columns:1fr;
+    height: auto;
+  }
 }
 .str-chat {
   --str-chat__primary-color: #009688;
@@ -269,7 +382,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .str-chat__channel {
-  height: 700px;
+  height: 100%;
+  min-height: 600px;
   overflow: hidden;
   overflow-y: auto;
   border-radius: 8px;

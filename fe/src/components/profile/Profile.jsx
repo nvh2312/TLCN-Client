@@ -4,6 +4,7 @@ import Dropdown from "../dropdown/Dropdown";
 
 const ProfileStyles = styled.div`
   display: flex;
+  margin-right:5px;
   justify-content: center;
   align-items: center;
   column-gap: 10px;
@@ -22,15 +23,36 @@ const ProfileStyles = styled.div`
   &:hover .name {
     color: yellow;
   }
+
+  /* Media queries for responsiveness */
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    .avatar {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .avatar {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    margin-right: 15px;
+  }
 `;
+
 const Profile = ({ data }) => {
   return (
     <>
       <ProfileStyles className="profile">
-        <div className="avatar">
+        <div className="avatar md:w-[48px] ">
           <img src={data.avatar} alt="" className="bg-red-600" />
         </div>
-        <div className="flex flex-col items-start justify-center text-white text-base">
+        <div className="hidden lg:flex flex-col items-start justify-center text-white text-base">
           <span className="text-sm font-medium">Xin chào ,</span>
           <span className="text-sm font-medium">{data.name}</span>
         </div>

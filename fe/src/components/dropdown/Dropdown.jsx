@@ -6,11 +6,11 @@ import { logout } from "../../redux/auth/userSlice";
 import { useDispatch } from "react-redux";
 import userApi from "../../api/userApi";
 const DropdownStyles = styled.div`
-  width: 300px;
+  width: 230px;
   background-color: white;
   position: absolute;
   top: 100%;
-  right: 0;
+  right: -39px;
   margin-top: 20px;
   border-radius: 10px;
   color: black;
@@ -47,6 +47,13 @@ const DropdownStyles = styled.div`
     background: #f1fbf7;
     color: #1dc071;
   }
+  @media (min-width: 768px) {
+    right:-28px;
+  }
+  @media (min-width: 1024px) {
+    width: 300px;
+    right:0;
+  }
 `;
 
 const Dropdown = () => {
@@ -72,6 +79,7 @@ const Dropdown = () => {
       }
     });
   };
+  
   return (
     <DropdownStyles className="dropdown">
       <NavLink to="/account" end>

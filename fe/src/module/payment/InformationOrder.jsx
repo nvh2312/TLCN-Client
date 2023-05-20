@@ -9,7 +9,7 @@ const InformationOrder = ({ data }) => {
     navigate(`/${path}/${data.id}`);
   };
   return (
-    <div className="flex items-center justify-between px-5 gap-x-5 py-5">
+    <div className="flex items-center md:justify-between gap-x-5 py-5">
       <img
         src={data.product.images[0]}
         alt=""

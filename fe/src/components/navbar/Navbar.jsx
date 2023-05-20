@@ -102,12 +102,12 @@ const Navbar = () => {
   }, [show]);
 
   return (
-    <nav className=" bg-primary h-[80px] sticky z-50 shadow-md transition-all top-0 text-white -translate-y-0.5 ">
-      <div className="container flex items-center h-full justify-between ">
+    <nav className="bg-primary h-[60px] md:h-[80px] sticky z-50 shadow-md transition-all top-0 text-white -translate-y-0.5 px-[8px] md:px-[20px]">
+      <div className="container flex items-center h-full justify-between">
         <div className="flex items-center justify-center gap-2">
           <Link
             title="Tất cả sản phẩm"
-            className="cursor-pointer"
+            className="cursor-pointer hidden xl:block"
             to="/product"
           >
             <svg
@@ -126,7 +126,7 @@ const Navbar = () => {
             </svg>
           </Link>
           <Link to="/" className="flex items-center">
-            <div className="w-[100px] h-[120px]">
+            <div className="w-[60px] h-[80px] md:w-[100px] md:h-[120px]">
               <img
                 src="/images/logo.png"
                 alt="logo"
@@ -134,16 +134,22 @@ const Navbar = () => {
                 title="Trang chủ"
               />
             </div>
-            <span className="text-white font-medium text-3xl" title="Trang chủ">
+            <span
+              className="text-white font-medium text-3xl hidden xl:inline-block"
+              title="Trang chủ"
+            >
               HC.VN
             </span>
           </Link>
         </div>
 
-        <div className="w-[650px] flex items-center relative " ref={nodeRef}>
+        <div
+          className="w-full md:w-[590px] xl:w-[650px] flex items-center relative"
+          ref={nodeRef}
+        >
           <input
             type="text"
-            className="py-3 px-4 rounded-l-lg text-base w-[600px] flex-shrink-0 text-black"
+            className="py-1 md:py-3 px-4 rounded-l-lg text-base w-[80%] sm:w-[85%] xl:w-[600px] flex-shrink-0 text-black"
             id="search"
             placeholder="Nhập tên laptop cần tìm ..."
             onClick={handleClick}
@@ -151,7 +157,7 @@ const Navbar = () => {
             value={keyword}
           />
           <div
-            className="w-[50px] bg-yellow-400 h-[48px] rounded-r-lg flex items-center justify-center cursor-pointer "
+            className="w-[50px] bg-yellow-400 h-[32px] md:h-[48px] rounded-r-lg flex items-center justify-center cursor-pointer"
             onClick={handleClickSearch}
           >
             <svg
@@ -177,7 +183,7 @@ const Navbar = () => {
         {!isLoggedIn ? (
           <Link
             to="/sign-in"
-            className="flex items-center justify-center hover:text-yellow-400"
+            className="items-center justify-center hover:text-yellow-400 flex mr-[5px] md:mr-[10px]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -193,16 +199,15 @@ const Navbar = () => {
                 d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
               />
             </svg>
-            <span className="px-2 font-medium text-base">Đăng nhập</span>
+            <span className="px-2 font-medium text-base hidden lg:inline-block">
+              Đăng nhập
+            </span>
           </Link>
         ) : (
           <Profile data={loggedInUser} />
         )}
-        <div
-          className="relative flex items-center gap-x-3 cart-home cursor-pointer"
-          onMouseOver={hanleMouseOver}
-          onMouseOut={hanleMouseOut}
-        >
+
+        <div className="relative items-center gap-x-3 cart-home cursor-pointer flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -217,9 +222,11 @@ const Navbar = () => {
               d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
             />
           </svg>
-          <div className="flex flex-col items-start justify-between ">
-            <span className="font-medium text-sm">Giỏ hàng của bạn</span>
-            <span className="font-medium text-sm ">
+          <div className="flex flex-col items-start justify-between">
+            <span className="font-medium text-sm hidden lg:inline-block">
+              Giỏ hàng của bạn
+            </span>
+            <span className="font-medium text-sm hidden lg:inline-block">
               ({cart?.length || 0}) sản phẩm
             </span>
           </div>

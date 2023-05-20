@@ -22,6 +22,13 @@ const DashboardStyles = styled.div`
       padding: 40px 20px;
       gap: 0 40px;
       align-items: start;
+      @media (max-width: 1023px) {
+        grid-template-columns: 1fr;
+        > *:first-child {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+      }
     }
   }
 `;

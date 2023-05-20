@@ -33,28 +33,28 @@ const PaymentBank = () => {
   }, []);
   return (
     <div className="mt-10">
-      <div className="container mx-auto  bg-white rounded-lg flex flex-col p-12 justify-between">
+      <div className="container mx-auto bg-white rounded-lg flex flex-col p-6 md:p-12 justify-between">
         <span className="text-2xl font-semibold mx-auto">
           Thông tin đơn hàng
         </span>
-        <div className="flex flex-col w-[1000px] mx-auto mt-16 gap-y-3">
-          <div className="flex items-center justify-between">
+        <div className="flex flex-col w-full md:w-[700px] lg:w-[800px] xl:w-[1000px] mx-auto mt-8 md:mt-16 gap-y-3">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <span className="text-xl font-medium">Nguời nhận:</span>
             <span className="text-xl font-medium">{dataOrder?.receiver}</span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <span className="text-xl font-medium">Số điện thoại:</span>
             <span className="text-xl font-medium">{dataOrder?.phone}</span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <span className="text-xl font-medium">Địa chỉ nhận hàng:</span>
-            <span className="text-xl font-medium">{dataOrder?.address}</span>
+            <span className="text-xl font-medium text-center md:text-right">{dataOrder?.address}</span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <span className="text-xl font-medium">Phương thức thanh toán:</span>
             <span className="text-xl font-medium">{dataOrder?.payments}</span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             <span className="text-xl font-medium">
               Tổng số tiền cần thanh toán
             </span>
@@ -64,7 +64,8 @@ const PaymentBank = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-[800px] mt-10">
+
+      <div className="mx-auto w-full md:w-[700px] lg:w-[800px] mt-10">
         <PayPalButtons
           style={{ shape: "pill" }}
           createOrder={(data, actions) => {

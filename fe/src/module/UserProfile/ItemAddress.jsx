@@ -171,8 +171,8 @@ const ItemAddress = ({ data, data_key }) => {
 
   return (
     <>
-      <div className="w-full bg-white  border-2 border-dotted text-black px-5 py-5 rounded-lg flex items-center justify-between my-7 focus:border-solid">
-        <div className="flex flex-col justify-between ">
+      <div className="w-full bg-white  border-2 border-dotted text-black px-5 py-5 rounded-lg flex flex-col xl:flex-row xl:items-center justify-between my-7 focus:border-solid">
+        <div className="mb-3 xl:mb-0 flex flex-col justify-between ">
           <div className="flex items-center gap-x-5 mb-2">
             <h3 className="font-medium text-base ">{data.name}</h3>
             {data.setDefault && (
@@ -226,7 +226,7 @@ const ItemAddress = ({ data, data_key }) => {
         onClose={() => {
           setShowModal(false);
         }}
-        bodyClassName="w-[750px] bg-white  rounded-lg relative z-10 content  overflow-y-auto "
+        bodyClassName="w-[450px] sm:w-[600px] lg:w-[750px] bg-white  rounded-lg relative z-10 content  overflow-y-auto "
       >
         <div className="h-[650px] overflow-x-hidden px-10 py-5 ">
           <h3 className="text-lg font-semibold text-black text-left mb-3">
@@ -267,7 +267,7 @@ const ItemAddress = ({ data, data_key }) => {
               Địa chỉ nhận hàng
             </h3>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between">
               <div className="flex flex-col items-start gap-4 mb-5">
                 <Label htmlFor="province">* Tỉnh/Thành phố</Label>
                 <DropdownSelect
@@ -303,7 +303,7 @@ const ItemAddress = ({ data, data_key }) => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between">
               <div className="flex flex-col items-start gap-4 mb-5">
                 <Label htmlFor="ward">* Phường/Xã</Label>
                 <DropdownSelect
@@ -335,7 +335,7 @@ const ItemAddress = ({ data, data_key }) => {
                 )}
               </div>
             </div>
-            <div className="flex items-center justify-end gap-x-4 mt-5">
+            <div className="flex items-center justify-center gap-x-4 mt-5">
               <button
                 className="p-3 text-base font-medium bg-white text-[#316BFF] rounded-lg border border-solid border-[blue]"
                 type="button"

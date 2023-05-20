@@ -50,7 +50,7 @@ const CartPage = () => {
     navigate("/checkout");
   };
   return (
-    <div className="mt-10">
+    <div className="px-[8px] md:px-[20px] mt-5 md:mt-7 lg:mt-10">
       <div className="container">
         <div className="flex items-center">
           <Link
@@ -89,7 +89,7 @@ const CartPage = () => {
             </div>
 
             <div className="cart">
-              <div className="information-cart mt-7 bg-white text-base rounded-lg">
+              <div className="information-cart mt-7 bg-white text-base rounded-lg w-full overflow-x-auto">
                 <Table>
                   <thead>
                     <tr>
@@ -122,8 +122,8 @@ const CartPage = () => {
                   </tbody>
                 </Table>
               </div>
-              <div className="information-price bg-white mt-7 text-base rounded-lg flex flex-col justify-start p-3">
-                <span className="font-medium">Thanh toán</span>
+              <div className="information-price bg-white mt-7 text-base rounded-lg flex flex-col self-end justify-start p-3 xl:self-start w-[350px]">
+                <span className="font-medium pl-[30px]">Thanh toán</span>
                 <div className="flex items-center justify-between py-4">
                   <span className="text-[#8b8f9b] text-base font-medium">
                     Tổng tạm tính

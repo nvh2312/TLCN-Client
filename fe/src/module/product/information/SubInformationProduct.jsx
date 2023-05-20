@@ -36,7 +36,7 @@ const SubInformationProduct = ({ data }) => {
           Thương hiệu: {data?.brand?.name}
         </span>
         <span>|</span>
-        <span className="text-base text-slate-400">SKU: {data?._id}</span>
+        <span className="text-base text-slate-400 short-edit">SKU: {data?._id}</span>
       </div>
       {data?.inventory > 0 && data?.inventory < 5 && (
         <span className="text-orange-500 font-medium mb-4">
@@ -60,16 +60,16 @@ const SubInformationProduct = ({ data }) => {
       <span className="w-full border-dotted border-2 mb-6"></span>
       {data?.inventory > 0 && (
         <>
-          <div className="flex items-center justify-between px-10">
+          <div className="flex items-center justify-between px-10 option">
             <button
-              className="px-8 py-3 bg-blue-800 text-white text-lg font-medium rounded-md w-[220px]"
+              className="px-8 py-3 bg-blue-800 text-white text-lg font-medium rounded-md w-[220px] edit"
               type="button"
               onClick={handleBuy}
             >
               MUA NGAY
             </button>
             <button
-              className="px-3 py-3  text-blue-700 text-lg font-medium rounded-md border-2 border-blue-700"
+              className="px-3 py-3  text-blue-700 text-lg font-medium rounded-md border-2 border-blue-700 edit"
               type="button"
               onClick={handleAddCart}
             >

@@ -101,11 +101,11 @@ const sendVerifyToken = catchAsync(async (user, statusCode, res) => {
   const message = `Bạn là chủ tài khoản? Vui lòng xác nhận tài khoản tại:  ${verifyURL}.\nMã xác nhận: ${verifyToken}\n.Nếu không phải, vui lòng bỏ qua mail này!`;
   user.password = undefined;
   try {
-    await sendEmail({
-      email: user.email,
-      subject: "verify User",
-      message,
-    });
+    // await sendEmail({
+    //   email: user.email,
+    //   subject: "verify User",
+    //   message,
+    // });
     res.status(statusCode).json({
       status: "success",
       token,
@@ -289,11 +289,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const message = `Bạn quên mật khẩu? Mã xác nhận của bạn: ${resetToken}.\nĐổi mật khẩu mới tại : ${resetURL}.\nNếu không phải bạn, vui lòng bỏ qua email này!`;
 
   try {
-    await sendEmail({
-      email: user.email,
-      subject: "Your password reset token (valid for 10 min)",
-      message,
-    });
+    // await sendEmail({
+    //   email: user.email,
+    //   subject: "Your password reset token (valid for 10 min)",
+    //   message,
+    // });
 
     res.status(200).json({
       status: "success",

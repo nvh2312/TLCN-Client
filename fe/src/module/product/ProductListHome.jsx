@@ -53,16 +53,30 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
   return (
     <div className={`${className}`}>
       <div
-        className={`container ${
+        className={`container pt-[60px] md:pt-[40px] lg:pt-0 ${
           bg === "bg1" ? 'bg-[url("../images/bg-laptop.png")] h-[460px]' : ""
         }
         ${bg === "bg2" ? 'bg-[url("../images/bg-laptop-1.png")] h-[460px]' : ""}
-           bg-no-repeat w-full bg-cover rounded-lg relative z-20`}
+           bg-no-repeat w-full bg-cover bg-center rounded-lg relative z-20`}
       >
         <Swiper
           modules={[Navigation, Pagination, EffectCards]}
-          slidesPerView={5}
-          slidesPerGroup={5}
+          breakpoints={{
+            768: {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+              slidesPerGroup: 4,
+            },
+            1280: {
+              slidesPerView: 5,
+              slidesPerGroup: 5,
+            },
+          }}
+          slidesPerView={2}
+          slidesPerGroup={2}
           navigation
           pagination={{ clickable: true }}
           className={`w-full rounded-lg ${className}`}
@@ -89,7 +103,7 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[600px] overflow-y-auto overflow-x-hidden"
+            bodyClassName="w-[450px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[600px] overflow-y-auto overflow-x-hidden"
           >
             <table className="table-product items-center table-fixed w-full">
               <thead>
@@ -108,14 +122,14 @@ const ProductListHome = ({ data, bg = "", className = "" }) => {
                     <img
                       src={selectedItems[0]?.images[0]}
                       alt=""
-                      className="w-[200px] h-[200px] object-cover mx-auto"
+                      className="w-full h-full object-cover mx-auto"
                     />
                   </td>
                   <td>
                     <img
                       src={selectedItems[1]?.images[0]}
                       alt=""
-                      className="w-[200px] h-[200px] object-cover mx-auto"
+                      className="w-full h-full object-cover mx-auto"
                     />
                   </td>
                 </tr>

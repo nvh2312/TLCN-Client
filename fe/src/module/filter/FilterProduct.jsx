@@ -44,16 +44,16 @@ const FilterProduct = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className="w-[98vw] xl:w-auto">
       {data.length === 0 && (
-        <div className="h-[700px] bg-white flex items-center justify-center flex-col gap-y-6">
+        <div className="h-[700px] w-full bg-white flex items-center justify-center flex-col gap-y-6">
           <img src="../images/search.png" alt="" className="w-[200px]" />
           <span className="text-xl font-medium">
             Không tìm thấy sản phẩm nào
           </span>
         </div>
       )}
-      <div className="grid-cols-4 grid gap-y-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-y-2 pb-10 items-stretch">
         {data.length > 0 &&
           data.map((item, index) => (
             <ProductItem
@@ -75,7 +75,7 @@ const FilterProduct = ({ data }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[600px] overflow-y-auto overflow-x-hidden"
+            bodyClassName="w-[450px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[600px] overflow-y-auto overflow-x-hidden"
           >
             <table className="table-product items-center table-fixed w-full">
               <thead>
@@ -94,14 +94,14 @@ const FilterProduct = ({ data }) => {
                     <img
                       src={selectedItems[0]?.images[0]}
                       alt=""
-                      className="w-[200px] h-[200px] object-cover mx-auto"
+                      className="w-full h-full object-cover mx-auto"
                     />
                   </td>
                   <td>
                     <img
                       src={selectedItems[1]?.images[0]}
                       alt=""
-                      className="w-[200px] h-[200px] object-cover mx-auto"
+                      className="w-full h-full object-cover mx-auto"
                     />
                   </td>
                 </tr>

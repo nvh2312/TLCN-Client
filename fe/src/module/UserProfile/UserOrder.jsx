@@ -63,12 +63,12 @@ const UserOrder = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between  flex-col xl:flex-row">
         <DashboardHeading
           title="Quản lý đơn hàng"
-          className="px-5 py-5"
+          className="xl:px-5 xl:py-5"
         ></DashboardHeading>
-        <div className="flex items-center gap-x-3">
+        <div className="flex items-center gap-x-3 pb-5">
           <button
             className={`flex items-center gap-x-3 cursor-pointer py-2 px-4 text-base font-medium rounded-lg border border-gray-300 ${
               state === "All" || state === undefined
@@ -113,73 +113,86 @@ const UserOrder = () => {
       {status === action_status.LOADING && (
         <>
           {" "}
-          <Table>
-            <thead>
-              <tr>
-                <th>Mã đơn hàng</th>
-                <th>Ngày mua</th>
-                <th>Sản phẩm</th>
-                <th>Tổng tiền</th>
-                <th>Trạng thái</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>
-                  {" "}
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  {" "}
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  {" "}
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-                <th>
-                  <Skeleton className="w-40 h-5 rounded-md" />
-                </th>
-              </tr>
-            </tbody>
-          </Table>
+          <div className="max-w-[90vw] overflow-x-auto">
+            <Table>
+              <thead>
+                <tr>
+                  <th>
+                    {" "}
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    {" "}
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    {" "}
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    {" "}
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                  <th>
+                    <Skeleton className="w-40 h-5 sm:h-10 md:h-15 lg:h-20 rounded-md" />
+                  </th>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
         </>
       )}
       {status === action_status.SUCCEEDED && (
@@ -199,164 +212,199 @@ const UserOrder = () => {
           {order?.length > 0 && (
             <>
               {" "}
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Mã đơn hàng</th>
-                    <th>Ngày mua</th>
-                    <th>Sản phẩm</th>
-                    <th>Tổng tiền</th>
-                    <th>Trạng thái</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(state === "All" || state === undefined) && (
-                    <>
-                      {order?.length > 0 &&
-                        order.map((item) => (
-                          <tr className="text-base" key={item._id}>
-                            <td
-                              className="cursor-pointer text-blue-600 hover:text-blue-900"
-                              onClick={() =>
-                                navigate(`/account/orders/${item._id}`)
-                              }
-                              title={item._id}
-                            >
-                              {item._id.slice(0, 10)}
-                            </td>
-                            <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
-                              &nbsp;&nbsp;
-                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                            </td>
-                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                            <td>{formatPrice(item.totalPrice)}</td>
-                            {item?.status === "Processed" && (
+              <div className="max-w-[90vw] overflow-x-auto">
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>Mã đơn hàng</th>
+                      <th>Ngày mua</th>
+                      <th>Sản phẩm</th>
+                      <th>Tổng tiền</th>
+                      <th>Trạng thái</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(state === "All" || state === undefined) && (
+                      <>
+                        {order?.length > 0 &&
+                          order.map((item) => (
+                            <tr className="text-base" key={item._id}>
+                              <td
+                                className="cursor-pointer text-blue-600 hover:text-blue-900"
+                                onClick={() =>
+                                  navigate(`/account/orders/${item._id}`)
+                                }
+                                title={item._id}
+                              >
+                                {item._id.slice(0, 10)}
+                              </td>
                               <td>
-                                <span className="p-2 rounded-lg text-white bg-orange-400">
+                                {format(new Date(item?.createdAt), "HH:mm")}
+                                &nbsp;&nbsp;
+                                {format(
+                                  new Date(item?.createdAt),
+                                  "dd/MM/yyyy"
+                                )}
+                              </td>
+                              <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                              <td>{formatPrice(item.totalPrice)}</td>
+                              {item?.status === "Processed" && (
+                                <td>
+                                  <span
+                                    className="p-2 rounded-lg text-white bg-orange-400"
+                                    style={{ whiteSpace: "nowrap" }}
+                                  >
+                                    Đang xử lý
+                                  </span>
+                                </td>
+                              )}
+                              {item?.status === "Waiting Goods" && (
+                                <td>
+                                  <span
+                                    className="p-2 rounded-lg text-white bg-yellow-400"
+                                    style={{ whiteSpace: "nowrap" }}
+                                  >
+                                    Đợi lấy hàng
+                                  </span>
+                                </td>
+                              )}
+                              {item?.status === "Cancelled" && (
+                                <td>
+                                  <span
+                                    className="p-2 rounded-lg text-white bg-red-400"
+                                    style={{ whiteSpace: "nowrap" }}
+                                  >
+                                    Đã hủy đơn
+                                  </span>
+                                </td>
+                              )}
+                              {item?.status === "Success" && (
+                                <td>
+                                  <span
+                                    className="p-2 rounded-lg text-white  bg-green-400"
+                                    style={{ whiteSpace: "nowrap" }}
+                                  >
+                                    Thành công
+                                  </span>
+                                </td>
+                              )}
+                            </tr>
+                          ))}
+                      </>
+                    )}
+                    {state === "Processed" && (
+                      <>
+                        {order?.length > 0 &&
+                          order.map((item) => (
+                            <tr className="text-base" key={item._id}>
+                              <td
+                                className="cursor-pointer text-blue-600 hover:text-blue-900"
+                                onClick={() =>
+                                  navigate(`/account/orders/${item._id}`)
+                                }
+                                title={item._id}
+                              >
+                                {item._id.slice(0, 10)}
+                              </td>
+                              <td>
+                                {format(new Date(item?.createdAt), "HH:mm")}
+                                &nbsp;&nbsp;
+                                {format(
+                                  new Date(item?.createdAt),
+                                  "dd/MM/yyyy"
+                                )}
+                              </td>
+                              <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                              <td>{formatPrice(item.totalPrice)}</td>
+                              <td>
+                                <span
+                                  className="p-2 rounded-lg text-white bg-orange-400"
+                                  style={{ whiteSpace: "nowrap" }}
+                                >
                                   Đang xử lý
                                 </span>
                               </td>
-                            )}
-                            {item?.status === "Waiting Goods" && (
-                              <td>
-                                <span className="p-2 rounded-lg text-white bg-yellow-400">
-                                  Đợi lấy hàng
-                                </span>
+                            </tr>
+                          ))}
+                      </>
+                    )}
+                    {state === "Cancelled" && (
+                      <>
+                        {order?.length > 0 &&
+                          order.map((item) => (
+                            <tr className="text-base" key={item._id}>
+                              <td
+                                className="cursor-pointer text-blue-600 hover:text-blue-900"
+                                onClick={() =>
+                                  navigate(`/account/orders/${item._id}`)
+                                }
+                                title={item._id}
+                              >
+                                {item._id.slice(0, 10)}
                               </td>
-                            )}
-                            {item?.status === "Cancelled" && (
                               <td>
-                                <span className="p-2 rounded-lg text-white bg-red-400">
+                                {format(new Date(item?.createdAt), "HH:mm")}
+                                &nbsp;&nbsp;
+                                {format(
+                                  new Date(item?.createdAt),
+                                  "dd/MM/yyyy"
+                                )}
+                              </td>
+                              <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                              <td>{formatPrice(item.totalPrice)}</td>
+
+                              <td>
+                                <span
+                                  className="p-2 rounded-lg text-white bg-red-400"
+                                  style={{ whiteSpace: "nowrap" }}
+                                >
                                   Đã hủy đơn
                                 </span>
                               </td>
-                            )}
-                            {item?.status === "Success" && (
+                            </tr>
+                          ))}
+                      </>
+                    )}
+                    {state === "Success" && (
+                      <>
+                        {order?.length > 0 &&
+                          order.map((item) => (
+                            <tr className="text-base" key={item._id}>
+                              <td
+                                className="cursor-pointer text-blue-600 hover:text-blue-900"
+                                onClick={() =>
+                                  navigate(`/account/orders/${item._id}`)
+                                }
+                                title={item._id}
+                              >
+                                {item._id.slice(0, 10)}
+                              </td>
                               <td>
-                                <span className="p-2 rounded-lg text-white  bg-green-400">
+                                {format(new Date(item?.createdAt), "HH:mm")}
+                                &nbsp;&nbsp;
+                                {format(
+                                  new Date(item?.createdAt),
+                                  "dd/MM/yyyy"
+                                )}
+                              </td>
+                              <td>{item.cart[0].product.title.slice(0, 50)}</td>
+                              <td>{formatPrice(item.totalPrice)}</td>
+
+                              <td>
+                                <span
+                                  className="p-2 rounded-lg text-white  bg-green-400"
+                                  style={{ whiteSpace: "nowrap" }}
+                                >
                                   Thành công
                                 </span>
                               </td>
-                            )}
-                          </tr>
-                        ))}
-                    </>
-                  )}
-                  {state === "Processed" && (
-                    <>
-                      {order?.length > 0 &&
-                        order.map((item) => (
-                          <tr className="text-base" key={item._id}>
-                            <td
-                              className="cursor-pointer text-blue-600 hover:text-blue-900"
-                              onClick={() =>
-                                navigate(`/account/orders/${item._id}`)
-                              }
-                              title={item._id}
-                            >
-                              {item._id.slice(0, 10)}
-                            </td>
-                            <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
-                              &nbsp;&nbsp;
-                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                            </td>
-                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                            <td>{formatPrice(item.totalPrice)}</td>
-                            <td>
-                              <span className="p-2 rounded-lg text-white bg-orange-400">
-                                Đang xử lý
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                    </>
-                  )}
-                  {state === "Cancelled" && (
-                    <>
-                      {order?.length > 0 &&
-                        order.map((item) => (
-                          <tr className="text-base" key={item._id}>
-                            <td
-                              className="cursor-pointer text-blue-600 hover:text-blue-900"
-                              onClick={() =>
-                                navigate(`/account/orders/${item._id}`)
-                              }
-                              title={item._id}
-                            >
-                              {item._id.slice(0, 10)}
-                            </td>
-                            <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
-                              &nbsp;&nbsp;
-                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                            </td>
-                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                            <td>{formatPrice(item.totalPrice)}</td>
-
-                            <td>
-                              <span className="p-2 rounded-lg text-white bg-red-400">
-                                Đã hủy đơn
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                    </>
-                  )}
-                  {state === "Success" && (
-                    <>
-                      {order?.length > 0 &&
-                        order.map((item) => (
-                          <tr className="text-base" key={item._id}>
-                            <td
-                              className="cursor-pointer text-blue-600 hover:text-blue-900"
-                              onClick={() =>
-                                navigate(`/account/orders/${item._id}`)
-                              }
-                              title={item._id}
-                            >
-                              {item._id.slice(0, 10)}
-                            </td>
-                            <td>
-                              {format(new Date(item?.createdAt), "HH:mm")}
-                              &nbsp;&nbsp;
-                              {format(new Date(item?.createdAt), "dd/MM/yyyy")}
-                            </td>
-                            <td>{item.cart[0].product.title.slice(0, 50)}</td>
-                            <td>{formatPrice(item.totalPrice)}</td>
-
-                            <td>
-                              <span className="p-2 rounded-lg text-white  bg-green-400">
-                                Thành công
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                    </>
-                  )}
-                </tbody>
-              </Table>
+                            </tr>
+                          ))}
+                      </>
+                    )}
+                  </tbody>
+                </Table>
+              </div>
               <div className="flex items-center justify-center mt-5">
                 <Pagination
                   activePage={page}

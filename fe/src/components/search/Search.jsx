@@ -29,7 +29,7 @@ const Search = ({ onClickItem, keyword }) => {
   }, [keyword]);
 
   return (
-    <div className="absolute top-14 left-0 w-full rounded-lg h-[350px] z-10 bg-white shadow-lg overflow-hidden overflow-y-auto">
+    <div className="absolute top-14 left-0 w-full rounded-lg w-custom sm:w-customm xl:w-[650px] pr-10 h-[350px] z-10 bg-white shadow-lg overflow-hidden overflow-y-auto">
       {statusSearch === action_status.LOADING && (
         <>
           <div className="flex flex-col items-start gap-y-10 p-5">
@@ -101,7 +101,7 @@ const Search = ({ onClickItem, keyword }) => {
               </div>
             ))}
           {productSearch.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-[300px] w-full gap-y-5">
+            <div className="ml-9 md:ml-5 flex flex-col items-center justify-center h-[300px] w-full gap-y-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

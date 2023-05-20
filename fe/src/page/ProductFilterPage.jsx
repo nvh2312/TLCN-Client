@@ -191,7 +191,7 @@ const ProductFilterPage = () => {
 
   return (
     <>
-      <div className="mt-10">
+      <div className="px-[8px] md:px-[20px] mt-5 md:mt-7 lg:mt-10">
         <div className="container">
           {" "}
           <div className="flex items-center">
@@ -406,15 +406,17 @@ const ProductFilterPage = () => {
                 </>
               )}
               {statusFilter === action_status.FAILED && (
-                <div className="h-[700px] bg-white flex items-center justify-center flex-col gap-y-6">
-                  <img
-                    src="../images/search.png"
-                    alt=""
-                    className="w-[200px]"
-                  />
-                  <span className="text-xl font-medium">
-                    Không tìm thấy sản phẩm nào
-                  </span>
+                <div className="w-[98vw] xl:w-auto">
+                  <div className="h-[700px] bg-white flex items-center justify-center flex-col gap-y-6">
+                    <img
+                      src="../images/search.png"
+                      alt=""
+                      className="w-[200px]"
+                    />
+                    <span className="text-xl font-medium">
+                      Không tìm thấy sản phẩm nào
+                    </span>
+                  </div>
                 </div>
               )}
             </div>

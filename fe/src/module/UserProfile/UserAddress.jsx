@@ -186,7 +186,7 @@ const UserAddress = () => {
         onClose={() => {
           setShowModal(false);
         }}
-        bodyClassName="w-[750px] bg-white  rounded-lg relative z-10 content h-[650px]  overflow-x-hidden"
+        bodyClassName="w-[450px] sm:w-[600px] lg:w-[750px] bg-white  rounded-lg relative z-10 content h-[650px]  overflow-x-hidden"
       >
         <div className="overflow-y-auto h-[650px] px-10 py-5 ">
           <h3 className="text-lg font-semibold text-black text-left mb-3">
@@ -227,7 +227,7 @@ const UserAddress = () => {
               Địa chỉ nhận hàng
             </h3>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between">
               <div className="flex flex-col items-start gap-4 mb-5">
                 <Label htmlFor="province">* Tỉnh/Thành phố</Label>
                 <DropdownSelect
@@ -263,7 +263,7 @@ const UserAddress = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between">
               <div className="flex flex-col items-start gap-4 mb-5">
                 <Label htmlFor="ward">* Phường/Xã</Label>
                 <DropdownSelect
@@ -295,7 +295,7 @@ const UserAddress = () => {
                 )}
               </div>
             </div>
-            <div className="flex items-center justify-end gap-x-4 mt-5">
+            <div className="flex items-center justify-center gap-x-4 mt-5">
               <button
                 className="p-3 text-base font-medium bg-white text-[#316BFF] rounded-lg border border-solid border-[blue]"
                 type="button"

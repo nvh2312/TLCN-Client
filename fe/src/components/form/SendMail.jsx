@@ -9,6 +9,25 @@ import Button from "../button/Button";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { forgotPassword } from "../../redux/auth/userSlice";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  width: 530px;
+
+  @media (max-width: 1024px) {
+    width: 50vw;
+    max-width: 480px;
+  }
+  @media (max-width: 768px) {
+    width: 55vw;
+    max-width: 450px;
+  }
+
+  @media (max-width: 480px) {
+    width: 90vw;
+    max-width: 300px;
+  }
+`;
 
 const schema = yup.object({
   email: yup
@@ -74,17 +93,17 @@ const SendMail = ({ onClick }) => {
         <Field>
           <Label htmlFor="email">Email</Label>
           <div className="flex items-center">
-            <Input
-              id="email"
-              name="email"
-              type="text"
-              placeholder="Mời bạn nhập email"
-              control={control}
-              style={{
-                width: "530px",
-              }}
-              disabled={!hiddenClock ? true : false}
-            ></Input>
+            <StyledDiv>
+              <Input
+                id="email"
+                name="email"
+                type="text"
+                placeholder="Mời bạn nhập email"
+                control={control}
+                disabled={!hiddenClock ? true : false}
+              ></Input>
+            </StyledDiv>
+
             {!hiddenButton && (
               <Button
                 type="submit"
@@ -100,7 +119,7 @@ const SendMail = ({ onClick }) => {
               </Button>
             )}
             {!hiddenClock && (
-              <div className="clock w-[100px] py-[20px] flex items-center justify-center text-white rounded-md ">
+              <div className="clock w-[100px] ml-2 py-[10px] flex items-center justify-center text-white rounded-md ">
                 <span className="text-lg font-medium">{time}</span>
               </div>
             )}

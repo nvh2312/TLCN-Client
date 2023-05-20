@@ -104,7 +104,7 @@ const ChatStream = () => {
           title="Chat online"
           className="px-5 py-5"
         ></DashboardHeading>
-        <div className="w-[1100px] h-[750px] rounded-lg mx-auto ">
+        <div className="w-70% xl:w-[900px] h-[750px] rounded-lg mx-auto ">
           <Chat client={client} theme="messaging light">
             <div className="chat">
               {role === "user" && (

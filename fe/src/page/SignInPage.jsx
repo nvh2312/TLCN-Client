@@ -147,15 +147,15 @@ const SignInPage = () => {
           )}
         </Field>
 
-        <div className="flex items-center justify-between px-48 mt-8">
-          <div className="flex items-center">
-            <span className="text-black text-base">
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between px-6 md:px-48 mt-8">
+          <div className="flex items-center mb-4 sm:mb-0">
+            <span className="text-black text-base sm:text-sm">
               Bạn chưa có tài khoản? &nbsp;
             </span>
 
             <Link
               to="/sign-up"
-              className="text-lg text-[#1DC071] font-semibold"
+              className="text-lg text-[#1DC071] font-semibold transition-colors hover:text-[#FFC107] sm:text-base"
             >
               Đăng ký
             </Link>
@@ -163,7 +163,7 @@ const SignInPage = () => {
 
           <Link
             to="/forgot-password"
-            className="text-lg text-[#1DC071] font-semibold"
+            className="text-lg text-[#1DC071] font-semibold transition-colors hover:text-[#FFC107] sm:text-base"
           >
             Quên mật khẩu
           </Link>

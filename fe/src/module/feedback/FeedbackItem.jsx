@@ -66,7 +66,7 @@ const FeedbackItem = ({ data }) => {
   };
   return (
     <>
-      <div className="flex flex-col w-[1200px] mx-auto mt-5">
+      <div className="flex flex-col w-[80%] xl:w-[1200px] mx-auto mt-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start gap-x-5">
             <img
@@ -89,7 +89,7 @@ const FeedbackItem = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="w-[1100px] bg-[#f3f4f6] mt-3 rounded-lg mx-auto flex flex-col p-5  justify-between gap-y-4">
+        <div className="w-[80%] xl:w-[1100px] bg-[#f3f4f6] mt-3 rounded-lg mx-auto flex flex-col p-5  justify-between gap-y-4">
           <div className="flex items-center justify-start ">
             <span className="text-base font-medium">Đánh giá: </span> &nbsp;
             <span className="flex items-center gap-x-2">

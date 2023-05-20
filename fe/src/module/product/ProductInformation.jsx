@@ -129,12 +129,12 @@ const ProductInformation = () => {
         </div>
       )}
       {statusId === action_status.SUCCEEDED && (
-        <div className="mt-10">
+        <div className="px-[8px] md:px-[20px] mt-5 md:mt-7 lg:mt-10">
           <div className="container">
             <div className="flex items-center">
               <Link
                 to="/"
-                className=" text-base text-[#a8b4c9] flex items-center font-medium"
+                className=" text-base text-[#a8b4c9] flex items-center font-medium min-w-[120px]"
               >
                 Trang chủ
                 <svg
@@ -152,7 +152,7 @@ const ProductInformation = () => {
                   />
                 </svg>
               </Link>
-              <span className="text-base text-[#a8b4c9] font-medium">
+              <span className="text-base text-[#a8b4c9] font-medium truncate">
                 {productId?.title}
               </span>
             </div>

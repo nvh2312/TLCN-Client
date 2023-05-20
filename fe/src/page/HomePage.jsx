@@ -59,6 +59,20 @@ const HomePage = () => {
       behavior: "smooth",
     });
   };
+  const getTotalItems = () => {
+    const screenWidth = window.innerWidth;
+  
+    if (screenWidth >= 1280) {
+      return 5;
+    } else if (screenWidth >= 1024) {
+      return 4;
+    } else if (screenWidth >= 768) {
+      return 3;
+    } else {
+      return 2;
+    }
+  };
+  const totalItem = getTotalItems();
 
   return (
     <>
@@ -68,16 +82,16 @@ const HomePage = () => {
             <Skeleton className="w-full rounded-lg h-[400px] mt-10" />
           </div>{" "}
           <div className="container w-full rounded-lg bg-gray-200">
-            <SkeletonItem className="my-10 grid-cols-5 p-5" totalItem={5} />
+            <SkeletonItem className=" my-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5" totalItem={totalItem} />
           </div>
           <div className="container w-full rounded-lg bg-gray-200">
-            <SkeletonItem className="my-10 grid-cols-5 p-5" totalItem={5} />
+            <SkeletonItem className="my-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5" totalItem={totalItem} />
           </div>
           <div className="my-20">
             <div className="container w-full rounded-lg bg-gray-200">
-              <SkeletonItem className="my-5 grid-cols-5 p-5" totalItem={5} />
-              <SkeletonItem className="my-5 grid-cols-5 p-5" totalItem={5} />
-              <SkeletonItem className="my-5 grid-cols-5 p-5" totalItem={5} />
+              <SkeletonItem className="my-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5" totalItem={totalItem} />
+              <SkeletonItem className="my-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5" totalItem={totalItem} />
+              <SkeletonItem className="my-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5" totalItem={totalItem} />
             </div>
             <div className="flex items-center justify-center container gap-x-5">
               <Skeleton className="w-5 h-5 rounded-md" />
@@ -92,8 +106,8 @@ const HomePage = () => {
       {status === action_status.SUCCEEDED && (
         <>
           <Banner />
-          <ProductListHome data={product} bg="bg1" className="pt-20" />
-          <ProductListHome data={product} bg="bg2" className="pt-20" />
+          <ProductListHome data={product} bg="bg1" className="pt-5 md:pt-10 lg:pt-20" />
+          <ProductListHome data={product} bg="bg2" className="pt-5 md:pt-10 lg:pt-20" />
           <ProductList
             data={product}
             handlePageClick={handlePageClick}

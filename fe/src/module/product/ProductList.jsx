@@ -46,7 +46,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
 
   return (
     <>
-      <div className="mt-20">
+      <div className="mt-10 md:mt-15 lg:mt-20">
         <div className="flex flex-col container rounded-lg bg-white ">
           <div className="flex items-center justify-between p-5 ">
             <span className="font-bold text-xl">Laptop</span>
@@ -73,7 +73,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
               </svg>
             </div>
           </div>
-          <div className="grid-cols-5 grid gap-y-2 pb-10 items-stretch">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-2 pb-10 items-stretch">
             {data.length > 0 &&
               data.map((item, index) => (
                 <ProductItem
@@ -110,7 +110,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="w-[1050px] bg-white rounded-lg relative z-10 content  overflow-hidden "
+            bodyClassName="w-[450px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white rounded-lg relative z-10 content  overflow-hidden "
           >
             <div className="overflow-y-auto h-[600px] p-10">
               <table className="table-product items-center table-fixed w-full">
@@ -130,14 +130,14 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
                       <img
                         src={selectedItems[0]?.images[0]}
                         alt=""
-                        className="w-[200px] h-[200px] object-cover mx-auto"
+                        className="w-full h-full object-cover mx-auto"
                       />
                     </td>
                     <td>
                       <img
                         src={selectedItems[1]?.images[0]}
                         alt=""
-                        className="w-[200px] h-[200px] object-cover mx-auto"
+                        className="w-full h-full object-cover mx-auto"
                       />
                     </td>
                   </tr>
