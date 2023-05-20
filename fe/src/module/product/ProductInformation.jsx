@@ -156,10 +156,10 @@ const ProductInformation = () => {
                 {productId?.title}
               </span>
             </div> */}
-            <div className="ProductDetail">
+            {/* <div className="ProductDetail">
               <InformationProduct data={productId} />
               <InformationService />
-            </div>
+            </div> */}
             {/* <div className="ProductDescription">
               <ProductDescription data={productId} />
               <ProductParameters data={productId} />
