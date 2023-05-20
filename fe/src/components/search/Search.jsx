@@ -29,7 +29,7 @@ const Search = ({ onClickItem, keyword }) => {
   }, [keyword]);
 
   return (
-    <div className="absolute top-14 left-0 w-[100%] rounded-lg w-custom sm:w-customm xl:w-[650px] pr-10 h-[350px] z-10 bg-white shadow-lg overflow-hidden overflow-y-auto">
+    <div className="absolute top-14 left-0 max-w-custom sm:max-w-auto rounded-lg w-custom sm:w-customm xl:w-[650px] pr-10 h-[350px] z-10 bg-white shadow-lg overflow-hidden overflow-y-auto">
       {statusSearch === action_status.LOADING && (
         <>
           <div className="flex flex-col items-start gap-y-10 p-5">
