@@ -75,7 +75,7 @@ const FilterProduct = ({ data }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="max-w-[350px] sm:max-w-full max-h-full  w-[430px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[500px] overflow-y-auto overflow-x-hidden"
+            bodyClassName="max-w-[350px] sm:max-w-full  w-[430px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white p-10 rounded-lg relative z-10 content h-[500px] overflow-y-auto overflow-x-hidden"
           >
             <table className="table-product items-center table-fixed w-full">
               <thead>

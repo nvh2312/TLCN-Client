@@ -160,13 +160,13 @@ const ProductInformation = () => {
               <InformationProduct data={productId} />
               <InformationService />
             </div>
-            <div className="ProductDescription">
+            {/* <div className="ProductDescription">
               <ProductDescription data={productId} />
               <ProductParameters data={productId} />
             </div>
 
             <Feedback id={productId?._id} data={productId} />
-            <Comment id={params?.id} />
+            <Comment id={params?.id} /> */}
 
             <BackToTopButton />
           </div>
