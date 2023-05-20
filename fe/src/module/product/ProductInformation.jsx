@@ -157,8 +157,8 @@ const ProductInformation = () => {
               </span>
             </div>
             <div className="ProductDetail">
-              <InformationProduct data={productId} />
-              <InformationService />
+              {/* <InformationProduct data={productId} />
+              <InformationService /> */}
             </div>
             <div className="ProductDescription">
               <ProductDescription data={productId} />
