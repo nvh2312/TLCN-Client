@@ -160,13 +160,13 @@ const ProductInformation = () => {
               <InformationProduct data={productId} />
               <InformationService />
             </div>
-            {/* <div className="ProductDescription">
+            <div className="ProductDescription">
               <ProductDescription data={productId} />
               <ProductParameters data={productId} />
             </div>
 
             <Feedback id={productId?._id} data={productId} />
-            <Comment id={params?.id} /> */}
+            <Comment id={params?.id} />
 
             <BackToTopButton />
           </div>
@@ -179,8 +179,8 @@ const ProductInformation = () => {
               </div>
             </div>
           )}
-          {/* {statusProductBrand === action_status.SUCCEEDED && (
-            <div className="container">
+          {statusProductBrand === action_status.SUCCEEDED && (
+            <div className="container max-w-full">
               <div className="mt-10 max-w-full bg-white rounded-lg p-5">
                 <div className=" text-xl font-semibold">
                   Cùng thương hiệu {productId?.brand?.name}
@@ -188,7 +188,7 @@ const ProductInformation = () => {
                 <ProductListHome data={productBrand} />
               </div>
             </div>
-          )} */}
+          )}
           {statusProductBrand === action_status.FAILED && <div>Error</div>}
         </div>
       )}
