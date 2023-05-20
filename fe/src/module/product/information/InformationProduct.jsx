@@ -11,7 +11,7 @@ const InformationProduct = ({ data }) => {
   const [activeThumb, setActiveThumb] = useState();
 
   return (
-    <div className=" Information-product bg-white rounded-xl py-8 px-2">
+    <div className=" Information-product max-w-full bg-white rounded-xl py-8 px-2">
       <div className="product-image">
         <Swiper
           loop={true}

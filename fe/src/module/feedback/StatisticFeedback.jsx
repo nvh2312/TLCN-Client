@@ -49,7 +49,10 @@ const StatisticFeedback = ({ data }) => {
               0
             }
           />
-          <span>{data.eachRating[4]} {progressBarWidth>300?" đánh giá":""}</span>
+          <span>
+            {data.eachRating[4] || 0}{" "}
+            {progressBarWidth > 300 ? " đánh giá" : ""}
+          </span>
         </div>
         <div className="flex flex-row items-center justify-between gap-x-5">
           <span className="flex flex-row items-center gap-x-2 ">
@@ -62,7 +65,10 @@ const StatisticFeedback = ({ data }) => {
               0
             }
           />
-          <span>{data.eachRating[3]} {progressBarWidth>300?" đánh giá":""}</span>
+          <span>
+            {data.eachRating[3] || 0}{" "}
+            {progressBarWidth > 300 ? " đánh giá" : ""}
+          </span>
         </div>
         <div className="flex flex-row items-center justify-between gap-x-5">
           <span className="flex flex-row items-center gap-x-2 ">
@@ -75,7 +81,10 @@ const StatisticFeedback = ({ data }) => {
               0
             }
           />
-          <span>{data.eachRating[2]} {progressBarWidth>300?" đánh giá":""}</span>
+          <span>
+            {data.eachRating[2] || 0}{" "}
+            {progressBarWidth > 300 ? " đánh giá" : ""}
+          </span>
         </div>
         <div className="flex flex-row items-center justify-between gap-x-5">
           <span className="flex flex-row items-center gap-x-2 ">
@@ -88,7 +97,10 @@ const StatisticFeedback = ({ data }) => {
               0
             }
           />
-          <span>{data.eachRating[1]} {progressBarWidth>300?" đánh giá":""}</span>
+          <span>
+            {data.eachRating[1] || 0}{" "}
+            {progressBarWidth > 300 ? " đánh giá" : ""}
+          </span>
         </div>
         <div
           className="flex flex-row items-center justify-between gap-x-5"
@@ -104,7 +116,10 @@ const StatisticFeedback = ({ data }) => {
               0
             }
           />
-          <span>{data.eachRating[0]} {progressBarWidth>300?" đánh giá":""}</span>
+          <span>
+            {data.eachRating[0] || 0}{" "}
+            {progressBarWidth > 300 ? " đánh giá" : ""}
+          </span>
         </div>
       </div>
     </div>
