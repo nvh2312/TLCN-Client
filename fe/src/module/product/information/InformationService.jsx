@@ -2,7 +2,7 @@ import React from "react";
 
 const InformationService = () => {
   return (
-    <div className="Information-service bg-white w-full flex flex-col rounded-xl py-5 px-5">
+    <div className="Information-service bg-white max-w-full flex flex-col rounded-xl py-5 px-5">
       <div className="flex items-center justify-between mb-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"

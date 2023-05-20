@@ -2,7 +2,7 @@ import React from "react";
 
 const ProductParameters = ({ data }) => {
   return (
-    <div className="product-parameters px-5 pb-10">
+    <div className="max-w-full product-parameters px-5 pb-10">
       <div className="text-2xl font-semibold mb-8">Thông tin chi tiết</div>
       <table className="table-product">
         <thead>
