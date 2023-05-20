@@ -144,7 +144,7 @@ const Navbar = () => {
         </div>
 
         <div
-          className="w-[100%] md:w-[590px] xl:w-[650px] flex items-center relative"
+          className="max-w-[100vw] w-[100%] md:w-[590px] xl:w-[650px] flex items-center relative"
           ref={nodeRef}
         >
           <input
