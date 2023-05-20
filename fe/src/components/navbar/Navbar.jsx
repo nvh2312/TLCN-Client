@@ -149,7 +149,7 @@ const Navbar = () => {
         >
           <input
             type="text"
-            className="py-1 md:py-3 px-4 rounded-l-lg text-base w-[80%] sm:w-[85%] xl:w-[600px] flex-shrink-0 text-black"
+            className="py-1 md:py-3 px-4 rounded-l-lg text-base w-[80%] sm:w-[85%] xl:w-[600px] flex-shrink xl:flex-shrink-0 text-black"
             id="search"
             placeholder="Nhập tên laptop cần tìm ..."
             onClick={handleClick}
