@@ -181,7 +181,7 @@ const ProductInformation = () => {
           )}
           {statusProductBrand === action_status.SUCCEEDED && (
             <div className="container">
-              <div className="mt-10 w-full bg-white rounded-lg p-5">
+              <div className="mt-10 max-w-full bg-white rounded-lg p-5">
                 <div className=" text-xl font-semibold">
                   Cùng thương hiệu {productId?.brand?.name}
                 </div>

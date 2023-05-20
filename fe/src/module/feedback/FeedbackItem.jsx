@@ -66,7 +66,7 @@ const FeedbackItem = ({ data }) => {
   };
   return (
     <>
-      <div className="flex flex-col w-[80%] xl:w-[1200px] mx-auto mt-5">
+      <div className="flex flex-col max-w-[80%] xl:max-w-full w-[80%] xl:w-[1200px] mx-auto mt-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start gap-x-5">
             <img

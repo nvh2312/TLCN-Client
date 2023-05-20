@@ -25,7 +25,7 @@ const StatisticFeedback = ({ data }) => {
   console.log(progressBarWidth);
   const stars = Array(5).fill(0);
   return (
-    <div className="w-[80%] xl:w-[1200px] h-[350px] bg-white rounded-lg mx-auto mt-6  border-2 border-solid feelback">
+    <div className="max-w-full w-[80%] xl:w-[1200px] h-[350px] bg-white rounded-lg mx-auto mt-6  border-2 border-solid feelback">
       <div className="flex flex-col items-center justify-center border-r-2 border-solid">
         <span className="text-3xl font-bold">{data.ratingsAverage} / 5</span>
         <span className="flex items-center justify-center gap-x-3 mt-3">
