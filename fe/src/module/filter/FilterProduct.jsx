@@ -94,14 +94,14 @@ const FilterProduct = ({ data }) => {
                     <img
                       src={selectedItems[0]?.images[0]}
                       alt=""
-                      className="w-full h-full object-cover mx-auto"
+                      className="w-full h-auto max-w-full max-h-full object-cover mx-auto"
                     />
                   </td>
                   <td>
                     <img
                       src={selectedItems[1]?.images[0]}
                       alt=""
-                      className="w-full h-full object-cover mx-auto"
+                      className="w-full h-auto max-w-full max-h-full object-cover mx-auto"
                     />
                   </td>
                 </tr>

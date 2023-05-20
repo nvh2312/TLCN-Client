@@ -110,9 +110,9 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="w-[430px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white rounded-lg h-[500px] relative z-10 content  overflow-hidden "
+            bodyClassName="w-[430px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white rounded-lg h-[500px] relative z-10 content overflow-y-auto overflow-x-hidden "
           >
-            <div className="overflow-y-auto h-[600px] p-10">
+            <div className=" p-10">
               <table className="table-product items-center table-fixed w-full">
                 <thead>
                   <tr>
@@ -130,14 +130,14 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
                       <img
                         src={selectedItems[0]?.images[0]}
                         alt=""
-                        className="w-full h-full object-cover mx-auto"
+                        className="w-full h-auto max-w-full max-h-full object-cover mx-auto"
                       />
                     </td>
                     <td>
                       <img
                         src={selectedItems[1]?.images[0]}
                         alt=""
-                        className="w-full h-full object-cover mx-auto"
+                        className="w-full h-auto max-w-full max-h-full object-cover mx-auto"
                       />
                     </td>
                   </tr>
