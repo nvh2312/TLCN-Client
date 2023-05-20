@@ -70,21 +70,25 @@ const ProductItem = ({
         <div></div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <span className="text-sm line-through text-slate-400">
+            <span className="hidden sm:block text-sm line-through text-slate-400">
               {formatPrice(product?.price)}
+            </span>
+            
+             <span className="sm:hidden text-sm line-through text-slate-400">
+              {product?.price/1000000 + " triệu "}
             </span>
             <span className="text-blue text-sm"> - {product?.percent}%</span>
           </div>
           {selected && selected.includes(product) ? (
             <button
-              className="p-2 text-red-600 border border-solid border-red-600 rounded-lg text-sm font-medium transition-all "
+              className="sm:p-2 text-red-600 border border-solid border-red-600 rounded-lg text-sm font-medium transition-all "
               onClick={(e) => handleRemove(e, product)}
             >
               Hủy
             </button>
           ) : (
             <button
-              className="p-2 text-green-600 border border-solid border-green-600 rounded-lg text-sm font-medium transition-all"
+              className="sm:p-2 text-green-600 border border-solid border-green-600 rounded-lg text-sm font-medium transition-all"
               onClick={(e) => handleAdd(e, product)}
             >
               So sánh

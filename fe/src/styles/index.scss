@@ -155,6 +155,9 @@ input::-webkit-inner-spin-button {
   @media (max-width: 550px) {
     grid-template-columns: 450px minmax(0, 1fr);
     }
+    @media (max-width: 450px) {
+      grid-template-columns: 350px minmax(0, 1fr);
+      }
 
 }
 @media (max-width: 768px) {

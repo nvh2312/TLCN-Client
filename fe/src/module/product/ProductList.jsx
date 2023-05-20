@@ -110,7 +110,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
               setShowModal(false);
               setSelectedItems([]);
             }}
-            bodyClassName="w-[450px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white rounded-lg relative z-10 content  overflow-hidden "
+            bodyClassName="w-[430px] sm:w-[600px] md:w-[700px] lg:w-[1050px] bg-white rounded-lg relative z-10 content  overflow-hidden "
           >
             <div className="overflow-y-auto h-[600px] p-10">
               <table className="table-product items-center table-fixed w-full">
