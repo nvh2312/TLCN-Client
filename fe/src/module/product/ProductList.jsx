@@ -46,7 +46,7 @@ const ProductList = ({ data, handlePageClick, page, totalPage }) => {
 
   return (
     <>
-      <div className="max-w-[98vw] mt-10 md:mt-15 lg:mt-20">
+      <div className="max-w-[100vw] mt-10 md:mt-15 lg:mt-20">
         <div className="flex flex-col container rounded-lg bg-white ">
           <div className="flex items-center justify-between p-5 ">
             <span className="font-bold text-xl">Laptop</span>

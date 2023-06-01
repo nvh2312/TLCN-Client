@@ -244,36 +244,43 @@ const UserAccount = () => {
             </Field>
 
             <Field>
-              <FieldCheckboxes>
-                <Label htmlFor="gender">Giới tính</Label>
-                <Radio
-                  name="gender"
-                  control={control}
-                  checked={watchGender === Gender.NAM}
-                  value={Gender.NAM}
-                  onClick={() => setValue("gender", "nam")}
+              <div class="flex flex-col sm:flex-row">
+                <Label
+                  htmlFor="gender"
+                  style={{ marginRight: "3vw", marginBottom: "2vh" }}
                 >
-                  Nam
-                </Radio>
-                <Radio
-                  name="gender"
-                  control={control}
-                  checked={watchGender === Gender.NU}
-                  value={Gender.NU}
-                  onClick={() => setValue("gender", "nu")}
-                >
-                  Nữ
-                </Radio>
-                <Radio
-                  name="gender"
-                  control={control}
-                  checked={watchGender === Gender.Diff}
-                  value={Gender.Diff}
-                  onClick={() => setValue("gender", "khac")}
-                >
-                  Khác
-                </Radio>
-              </FieldCheckboxes>
+                  Giới tính
+                </Label>
+                <FieldCheckboxes>
+                  <Radio
+                    name="gender"
+                    control={control}
+                    checked={watchGender === Gender.NAM}
+                    value={Gender.NAM}
+                    onClick={() => setValue("gender", "nam")}
+                  >
+                    Nam
+                  </Radio>
+                  <Radio
+                    name="gender"
+                    control={control}
+                    checked={watchGender === Gender.NU}
+                    value={Gender.NU}
+                    onClick={() => setValue("gender", "nu")}
+                  >
+                    Nữ
+                  </Radio>
+                  <Radio
+                    name="gender"
+                    control={control}
+                    checked={watchGender === Gender.Diff}
+                    value={Gender.Diff}
+                    onClick={() => setValue("gender", "khac")}
+                  >
+                    Khác
+                  </Radio>
+                </FieldCheckboxes>
+              </div>
               {errors.gender && (
                 <p className="text-red-500 text-base font-medium">
                   {errors.gender?.message}
@@ -283,11 +290,13 @@ const UserAccount = () => {
 
             <Button
               kind="primary"
-              className="mx-auto w-[200px] mt-10"
+              className="w-[200px]"
               type="submit"
               disabled={isSubmitting}
               isLoading={isSubmitting}
               height="50px"
+              margin="15px auto auto auto"
+              sm="15px auto auto auto"
             >
               Cập nhật thông tin
             </Button>

@@ -19,7 +19,7 @@ const DashboardStyles = styled.div`
     &-main {
       display: grid;
       grid-template-columns: 300px minmax(0, 1fr);
-      padding: 40px 20px;
+      padding: 40px 0px;
       gap: 0 40px;
       align-items: start;
       @media (max-width: 1023px) {
@@ -37,7 +37,7 @@ const DashboardLayout = ({ children }) => {
   useEffect(() => {}, [loggedInUser]);
   return (
     <DashboardStyles>
-      <div className="dashboard-main">
+      <div className="container dashboard-main">
         <Sidebar></Sidebar>
         <div className="dashboard-children">
           <Outlet></Outlet>

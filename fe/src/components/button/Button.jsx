@@ -11,8 +11,8 @@ const ButtonStyles = styled.button`
   border-radius: 8px;
   font-weight: 600;
   font-size: 18px;
-  margin:  ${(props) => props.margin || "auto"};
-  width:  ${(props) => props.width || "auto"};
+  margin: ${(props) => props.margin || "auto"};
+  width: ${(props) => props.width || "auto"};
   height: ${(props) => props.height || "66px"};
   display: flex;
   align-items: center;
@@ -20,9 +20,9 @@ const ButtonStyles = styled.button`
   @media (max-width: 480px) {
     width: 90px;
     padding: 0;
-    margin: 0 0 0 5px;
+    margin: ${(props) => props.sm || "0 0 0 5px"};
   }
- 
+
   ${(props) =>
     props.bg === "secondary" &&
     css`

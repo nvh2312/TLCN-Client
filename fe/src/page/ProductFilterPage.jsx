@@ -79,7 +79,20 @@ const ProductFilterPage = () => {
   };
 
   const [filter, setFilter] = useState(initFilter);
+  const getTotalItems = () => {
+    const screenWidth = window.innerWidth;
 
+    if (screenWidth >= 1280) {
+      return 5;
+    } else if (screenWidth >= 1024) {
+      return 4;
+    } else if (screenWidth >= 768) {
+      return 3;
+    } else {
+      return 2;
+    }
+  };
+  const totalItem = getTotalItems();
   const filterSelect = (type, checked, item) => {
     if (checked) {
       switch (type) {
@@ -365,7 +378,7 @@ const ProductFilterPage = () => {
               </>
             )}
 
-            <div className="product-list">
+            <div className="w-[95vw] xl:w-auto product-list">
               {statusFilter === action_status.LOADING && (
                 <div className="flex flex-col container rounded-lg bg-white">
                   <div className="flex items-center p-5 gap-x-5">
@@ -374,9 +387,18 @@ const ProductFilterPage = () => {
                     <Skeleton className="w-[80px] h-5 rounded-md" />
                   </div>
 
-                  <SkeletonItem className="my-5 grid-cols-4" totalItem={4} />
-                  <SkeletonItem className="my-5 grid-cols-4" totalItem={4} />
-                  <SkeletonItem className="my-5 grid-cols-4" totalItem={4} />
+                  <SkeletonItem
+                    className="my-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5"
+                    totalItem={totalItem}
+                  />
+                  <SkeletonItem
+                    className="my-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5"
+                    totalItem={totalItem}
+                  />
+                  <SkeletonItem
+                    className="my-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 p-5"
+                    totalItem={totalItem}
+                  />
                 </div>
               )}
               {statusFilter === action_status.SUCCEEDED && (
