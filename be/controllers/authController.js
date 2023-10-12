@@ -81,26 +81,26 @@ const createSendToken = async (user, statusCode, res) => {
   });
 };
 
-const sendVerifyToken = catchAsync(async (user, statusCode, res) => {
-  // 1) create token to verify
-  const verifyToken = user.createVerifyToken();
-  await user.save({ validateBeforeSave: false });
-  // 2) create cookie to client
-  const token = signToken(user._id);
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-  };
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
-
-  res.cookie("jwt", token, cookieOptions);
-  // 3) Send it to user's email
-  const verifyURL = `${req.protocol}://${req.get("host")}/verify`;
-  const message = `Bạn là chủ tài khoản? Vui lòng xác nhận tài khoản tại:  ${verifyURL}.\nMã xác nhận: ${verifyToken}\n.Nếu không phải, vui lòng bỏ qua mail này!`;
-  user.password = undefined;
+const sendVerifyToken = async (req, res, user, statusCode) => {
   try {
+    // 1) create token to verify
+    const verifyToken = user.createVerifyToken();
+    await user.save({ validateBeforeSave: false });
+    // 2) create cookie to client
+    const token = signToken(user._id);
+    const cookieOptions = {
+      expires: new Date(
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true,
+    };
+    if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+
+    res.cookie("jwt", token, cookieOptions);
+    // 3) Send it to user's email
+    const verifyURL = `${req.protocol}://${req.get("host")}/verify`;
+    const message = `Bạn là chủ tài khoản? Vui lòng xác nhận tài khoản tại:  ${verifyURL}.\nMã xác nhận: ${verifyToken}\n.Nếu không phải, vui lòng bỏ qua mail này!`;
+    user.password = undefined;
     await sendEmail({
       email: user.email,
       subject: "verify User",
@@ -117,7 +117,7 @@ const sendVerifyToken = catchAsync(async (user, statusCode, res) => {
   } catch (err) {
     console.log(err);
   }
-});
+};
 
 exports.verifyUser = catchAsync(async (req, res, next) => {
   // 1) Get user based on the token
@@ -145,7 +145,6 @@ exports.verifyUser = catchAsync(async (req, res, next) => {
 
 exports.signup = catchAsync(async (req, res, next) => {
   const userExist = await User.find({ email: req.body.email });
-  console.log(JSON.stringify(userExist));
   if (JSON.stringify(userExist) != "[]") {
     return next(new AppError("Email này đã được đăng ký.", 500));
   }
@@ -155,8 +154,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
   });
-
-  sendVerifyToken(newUser, 201, res);
+  sendVerifyToken(req, res, newUser, 201);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -177,7 +175,7 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   // 3) Check if user not verify, send code to gmail
   if (user.active == "verify") {
-    sendVerifyToken(user, 201, res);
+    sendVerifyToken(req, res, user, 201);
   }
 
   // 4) If everything ok, send token to client
@@ -282,9 +280,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // 3) Send it to user's email
-  const resetURL = `${req.protocol}://${req.get(
-    "host"
-  )}/forgot-password`;
+  const resetURL = `${req.protocol}://${req.get("host")}/forgot-password`;
 
   const message = `Bạn quên mật khẩu? Mã xác nhận của bạn: ${resetToken}.\nĐổi mật khẩu mới tại : ${resetURL}.\nNếu không phải bạn, vui lòng bỏ qua email này!`;
 

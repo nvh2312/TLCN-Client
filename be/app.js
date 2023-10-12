@@ -22,14 +22,18 @@ const commentRouter = require("./routes/commentRoutes");
 
 const app = express();
 // Add headers before the routes are defined
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
-//     credentials: true,
-//   })
-// );
-app.use(cors());
+if (process.env.NODE_ENV === "development") {
+  app.use(
+    cors({
+      origin: "http://localhost:5173",
+      methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
+      credentials: true,
+    })
+  );
+}
+else{
+  app.use(cors());
+}
 // Serving static files
 // 1) GLOBAL MIDDLEWARE
 // Set security HTTP headers

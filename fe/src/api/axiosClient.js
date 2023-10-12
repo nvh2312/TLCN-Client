@@ -1,12 +1,21 @@
 import axios from "axios";
-const axiosClient = axios.create({
-  // baseURL: "http://localhost:3000/",
-  baseURL: "/",
-  headers: {
-    "Content-Type": "application/JSON",
-  },
-  // withCredentials: true,
-});
+import Config from "../config";
+
+const axiosClient =
+  Config?.env === "developer"
+    ? axios.create({
+        baseURL: "http://localhost:3000/",
+        headers: {
+          "Content-Type": "application/JSON",
+        },
+        withCredentials: true,
+      })
+    : axios.create({
+        baseURL: "/",
+        headers: {
+          "Content-Type": "application/JSON",
+        },
+      });
 axiosClient.interceptors.request.use(
   function (config) {
     // Do something before request is sent
