@@ -125,7 +125,7 @@ const UpdatePassword = () => {
 
         <Button
           kind="primary"
-          className="mx-auto w-[200px] mt-10"
+          className="mx-auto w-[200px] mt-[2.5rem!important]"
           type="submit"
           disabled={isSubmitting}
           isLoading={isSubmitting}

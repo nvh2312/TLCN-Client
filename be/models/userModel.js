@@ -72,6 +72,10 @@ const userSchema = new mongoose.Schema({
   dateOfBirth: String,
   gender: String,
   phone: String,
+  balance: {
+    type: Number,
+    default: 0,
+  },
 });
 userSchema.index({'$**': 'text'});
 

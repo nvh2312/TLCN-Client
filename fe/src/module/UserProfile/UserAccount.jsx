@@ -244,7 +244,7 @@ const UserAccount = () => {
             </Field>
 
             <Field>
-              <div class="flex flex-col sm:flex-row">
+              <div className="flex flex-col sm:flex-row">
                 <Label
                   htmlFor="gender"
                   style={{ marginRight: "3vw", marginBottom: "2vh" }}

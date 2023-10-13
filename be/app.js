@@ -19,6 +19,7 @@ const reviewRouter = require("./routes/reviewRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const importRouter = require("./routes/importRoutes");
 const commentRouter = require("./routes/commentRoutes");
+const transactionRouter = require("./routes/transactionRoutes");
 
 const app = express();
 // Add headers before the routes are defined
@@ -88,6 +89,7 @@ app.use("/api/v1/reviews", reviewRouter);
 app.use("/api/v1/orders", orderRouter);
 app.use("/api/v1/imports", importRouter);
 app.use("/api/v1/comments", commentRouter);
+app.use("/api/v1/payments", transactionRouter);
 const __variableOfChoice = path.resolve();
 app.use(express.static(path.join(__variableOfChoice, "/fe/dist")));
 app.get("*", (req, res) =>

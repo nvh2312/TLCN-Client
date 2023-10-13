@@ -193,7 +193,7 @@ const ItemAddress = ({ data, data_key }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-start gap-x-4">
+        <div className="flex items-center justify-start gap-x-4 pr-5">
           {!data.setDefault && (
             <button
               className="border-2 border-solid px-2 py-2 text-green-400 font-medium border-green-400 rounded-lg"

@@ -48,11 +48,11 @@ const DropdownStyles = styled.div`
     color: #1dc071;
   }
   @media (min-width: 768px) {
-    right:-28px;
+    right: -28px;
   }
   @media (min-width: 1024px) {
     width: 300px;
-    right:0;
+    right: 0;
   }
 `;
 
@@ -79,7 +79,7 @@ const Dropdown = () => {
       }
     });
   };
-  
+
   return (
     <DropdownStyles className="dropdown">
       <NavLink to="/account" end>
@@ -188,6 +188,27 @@ const Dropdown = () => {
           </svg>
 
           <span className="text-base font-medium">Đổi mật khẩu</span>
+        </div>
+      </NavLink>
+      <NavLink to="/account/recharge" end>
+        <div className="flex items-center gap-x-4 border-b-2 border-solid px-3 py-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              d="M18 8.5V8.35417C18 6.50171 16.4983 5 14.6458 5H9.5C7.567 5 6 6.567 6 8.5C6 10.433 7.567 12 9.5 12H14.5C16.433 12 18 13.567 18 15.5C18 17.433 16.433 19 14.5 19H9.42708C7.53436 19 6 17.4656 6 15.5729V15.5M12 3V21"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          <span className="text-base font-medium">Nạp tiền</span>
         </div>
       </NavLink>
 

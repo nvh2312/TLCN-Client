@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 const SidebarStyles = styled.div`
   width: 300px;
   background: #ffffff;
@@ -129,8 +131,30 @@ const sidebarLinks = [
       </svg>
     ),
   },
+  {
+    title: "Nạp tiền",
+    url: "/account/recharge",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          xmlns="http://www.w3.org/2000/svg"
+          d="M18 8.5V8.35417C18 6.50171 16.4983 5 14.6458 5H9.5C7.567 5 6 6.567 6 8.5C6 10.433 7.567 12 9.5 12H14.5C16.433 12 18 13.567 18 15.5C18 17.433 16.433 19 14.5 19H9.42708C7.53436 19 6 17.4656 6 15.5729V15.5M12 3V21"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
 ];
 const Sidebar = () => {
+  const { current } = useSelector((state) => state.user);  
   return (
     <SidebarStyles className="sidebar">
       <div className="flex items-center justify-start">
@@ -142,6 +166,14 @@ const Sidebar = () => {
           />
         </div>
         <span className="font-semibold text-xl">HC.VN</span>
+      </div>
+      <div className="flex items-center justify-end px-[20px]">
+        <div className="font-semibold text-xl relative">
+          {current?.balance ?? 0}
+          <span className="absolute underline font-normal text-sm left-[-10px]">
+            đ
+          </span>
+        </div>
       </div>
       {sidebarLinks.map((link) => {
         if (link.onClick) {

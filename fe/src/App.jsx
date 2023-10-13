@@ -5,12 +5,14 @@ import Footer from "./components/footer/Footer";
 import HomePage from "./page/HomePage";
 import NotFoundPage from "./page/NotFoundPage";
 import SignInPage from "./page/SignInPage";
+import PaymentSuccess from "./page/PaymentSuccess";
 import SignUpPage from "./page/SignUpPage";
 import VerifyPage from "./page/VerifyPage";
 import ResetPasswordPage from "./page/ResetPasswordPage";
 import ForgotPasswordPage from "./page/ForgotPasswordPage";
 import UserAccount from "./module/UserProfile/UserAccount";
 import UserOrder from "./module/UserProfile/UserOrder";
+import Recharge from "./module/UserProfile/Recharge";
 import UserAddress from "./module/UserProfile/UserAddress";
 import DashboardLayout from "./module/dashboard/DashboardLayout";
 import ProductDetail from "./page/ProductDetail";
@@ -41,6 +43,7 @@ function App() {
           <Route path="/sign-in" element={<SignInPage />}></Route>
           <Route path="/sign-up" element={<SignUpPage />}></Route>
           <Route path="/verify" element={<VerifyPage />}></Route>
+          <Route path="/payment-success" element={<PaymentSuccess />}></Route>
           <Route
             path="/reset-password/:token"
             element={<ResetPasswordPage />}
@@ -57,6 +60,7 @@ function App() {
               element={<InformationDetailOrder />}
             ></Route>
             <Route path="/account/address" element={<UserAddress />}></Route>
+            <Route path="/account/recharge" element={<Recharge />}></Route>
             <Route path="/account/chat" element={<ChatStream />}></Route>
             <Route
               path="/account/reset-password"

@@ -81,13 +81,11 @@ const PaymentBank = () => {
           }}
           onApprove={async (data, actions) => {
             const order = await actions.order.capture();
-            console.log("order:", order);
             Swal.fire(
               "Thanh toán thành công!",
               "Cảm ơn bạn đã ủng hộ cửa hàng !!!",
               "success"
             );
-            console.log(dataOrder);
             const data1 = {
               address: dataOrder?.address,
               phone: dataOrder?.phone,
@@ -97,7 +95,6 @@ const PaymentBank = () => {
               payments: dataOrder?.payments,
               invoicePayment: order,
             };
-            console.log(data1);
 
             try {
               const response = await orderApi.createOrder(data1);

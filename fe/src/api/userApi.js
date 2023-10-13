@@ -70,5 +70,13 @@ const userApi = {
     const url = "/api/v1/users/setDefaultAddress";
     return axiosClient.patch(url, data);
   },
+  payment(data) {
+    const url = "/api/v1/payments/create_payment_url";
+    return axiosClient.post(url, data);
+  },
+  statusPayment(data) {
+    const url = "/api/v1/payments/return_payment_status";
+    return axiosClient.post(url, data);
+  },
 };
 export default userApi;
