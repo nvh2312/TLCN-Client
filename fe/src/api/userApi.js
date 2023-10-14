@@ -78,5 +78,9 @@ const userApi = {
     const url = "/api/v1/payments/return_payment_status";
     return axiosClient.post(url, data);
   },
+  statusPaypal(data) {
+    const url = "/api/v1/payments/return_paypal_status";
+    return axiosClient.post(url, data);
+  },
 };
 export default userApi;

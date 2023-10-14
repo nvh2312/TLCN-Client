@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../redux/auth/userSlice";
+import { PayPalButtons } from "@paypal/react-paypal-js";
+import Swal from "sweetalert2";
 
 const schema = yup.object({
   amount: yup
@@ -26,6 +28,7 @@ const Recharge = () => {
   const dispatch = useDispatch();
   const {
     control,
+    getValues,
     handleSubmit,
     formState: { isSubmitting, isValid, errors },
     reset,
@@ -78,27 +81,25 @@ const Recharge = () => {
     }
     if (!isValid) return;
     try {
-      if (payment === "vnpay") {
-        const params = { ...values, action: "recharge" };
-        const response = await userApi.payment(params);
-        const widthPopup = 400;
-        const heightPopup = 600;
-        const leftPopup = window.screenX + (window.outerWidth - widthPopup) / 2;
-        const topPopup =
-          window.screenY + (window.outerHeight - heightPopup) / 2;
-        const popup = window.open(
-          response.vnpUrl,
-          "_blank",
-          `width=${widthPopup}, height=${heightPopup}, left=${leftPopup}, top=${topPopup}`
-        );
-        window.addEventListener("message", receiveMessage);
-        popup.onbeforeunload = () => {
-          window.removeEventListener("message", receiveMessage);
-        };
-      } else {
-        console.log("ok");
-      }
+      const params = { ...values, action: "recharge" };
+      const response = await userApi.payment(params);
+      const widthPopup = 400;
+      const heightPopup = 600;
+      const leftPopup = window.screenX + (window.outerWidth - widthPopup) / 2;
+      const topPopup = window.screenY + (window.outerHeight - heightPopup) / 2;
+      const popup = window.open(
+        response.vnpUrl,
+        "_blank",
+        `width=${widthPopup}, height=${heightPopup}, left=${leftPopup}, top=${topPopup}`
+      );
+      window.addEventListener("message", receiveMessage);
+      window.addEventListener("beforeunload", function () {
+        if (!popup.closed) {
+          popup.close();
+        }
+      });
     } catch (error) {
+      console.log(error);
       toast.dismiss();
       toast.error("Đã có lỗi xảy ra");
     }
@@ -175,16 +176,83 @@ const Recharge = () => {
           </p>
         )}
 
-        <Button
-          kind="primary"
-          className="mx-auto w-[200px] mt-10"
-          type="submit"
-          disabled={isSubmitting}
-          isLoading={isSubmitting}
-          height="50px"
-        >
-          <span className="text-base font-medium"> Nạp tiền</span>
-        </Button>
+        {payment === "vnpay" && (
+          <Button
+            kind="primary"
+            className={`mx-auto w-[200px] mt-10 ${
+              getValues("amount") >= 5000
+                ? ""
+                : "pointer-events-none opacity-75"
+            }`}
+            type="submit"
+            disabled={isSubmitting}
+            isLoading={isSubmitting}
+            height="50px"
+          >
+            <span className="text-base font-medium"> Nạp tiền</span>
+          </Button>
+        )}
+        {payment === "paypal" && (
+          <div
+            className={`w-[100px] mx-auto ${
+              getValues("amount") >= 5000
+                ? ""
+                : "pointer-events-none opacity-75"
+            }`}
+          >
+            <PayPalButtons
+              style={{
+                color: "silver",
+                layout: "horizontal",
+                height: 48,
+                tagline: false,
+                shape: "pill",
+              }}
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        value:
+                          Number((getValues("amount") / 24000).toFixed(2)) ||
+                          0.21,
+                      },
+                    },
+                  ],
+                });
+              }}
+              onApprove={async (data, actions) => {
+                const order = await actions.order.capture();
+                Swal.fire(
+                  "Thanh toán thành công!",
+                  `Tài khoản của bạn đã được nạp ${
+                    getValues("amount") || 5000
+                  }`,
+                  "success"
+                );
+
+                const record = {
+                  amount: getValues("amount") || 5000,
+                  invoicePayment: order,
+                };
+                const response = await userApi.statusPaypal(record);
+                dispatch(getUser());
+                reset({
+                  amount: "",
+                });
+                setPayment("");
+                actions.close();
+              }}
+              onError={(err) => {
+                console.log(err);
+                toast.dismiss();
+                toast.error("Lỗi hệ thống thanh toán Paypal", {
+                  pauseOnHover: false,
+                });
+              }}
+            />
+          </div>
+        )}
       </form>
     </div>
   );

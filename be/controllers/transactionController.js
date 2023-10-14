@@ -88,7 +88,7 @@ exports.returnPaymentStatus = catchAsync(async (req, res, next) => {
   let signed = hmac.update(new Buffer.from(signData, "utf-8")).digest("hex");
 
   if (secureHash === signed) {
-    if(vnp_Params.vnp_OrderInfo === "recharge") {
+    if(vnp_Params.vnp_ResponseCode === "00" && vnp_Params.vnp_OrderInfo === "recharge") {
       const newRecord = {
         user: req.user,
         amount: Number(vnp_Params.vnp_Amount)/100,
@@ -104,3 +104,15 @@ exports.returnPaymentStatus = catchAsync(async (req, res, next) => {
     res.status(201).json({ message: "success", code: "97" });
   }
 });
+
+exports.returnPaypalStatus = catchAsync(async (req, res, next) => {
+  const newRecord = {
+    user: req.user,
+    amount: req.body.amount,
+    payments: "paypal",
+    invoicePayment: req.body.invoicePayment
+  }
+  await Transaction.create(newRecord);
+  res.status(201).json({ message: "success" });
+
+})

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { formatPrice } from "../../utils/formatPrice";
 import { useSelector } from "react-redux";
 
 const SidebarStyles = styled.div`
@@ -169,10 +170,7 @@ const Sidebar = () => {
       </div>
       <div className="flex items-center justify-end px-[20px]">
         <div className="font-semibold text-xl relative">
-          {current?.balance ?? 0}
-          <span className="absolute underline font-normal text-sm left-[-10px]">
-            đ
-          </span>
+          {formatPrice(current?.balance ?? 0)}
         </div>
       </div>
       {sidebarLinks.map((link) => {
