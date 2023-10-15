@@ -86,6 +86,7 @@ export const updateInfoUser = createAsyncThunk(
 
 export const getUser = createAsyncThunk("user/getUser", async () => {
   const response = await userApi.getUser();
+  localStorage.setItem(StorageKeys.USER, JSON.stringify(response.data.data));
   return response.data.data;
 });
 
@@ -96,6 +97,7 @@ const userSlice = createSlice({
     status: action_status.IDLE,
     user: {},
     update: false,
+    showPayment: false,
   },
   reducers: {
     logout(state) {
@@ -109,6 +111,9 @@ const userSlice = createSlice({
     },
     refresh: (state, action) => {
       state.update = false;
+    },
+    setRightBar(state) {
+      state.showPayment = !state.showPayment;
     },
   },
   extraReducers: {
@@ -149,5 +154,5 @@ const userSlice = createSlice({
 });
 
 const { actions, reducer } = userSlice;
-export const { logout, refresh } = actions;
+export const { logout, refresh, setRightBar } = actions;
 export default reducer;

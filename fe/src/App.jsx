@@ -22,6 +22,7 @@ import PaymentPage from "./module/payment/PaymentPage";
 import ProductFilterPage from "./page/ProductFilterPage";
 import PaymentCash from "./module/payment/PaymentCash";
 import PaymentBank from "./module/payment/PaymentBank";
+import PaymentList from "./components/Modal/PaymentList";
 import InformationDetailOrder from "./module/UserProfile/InformationDetailOrder";
 import Navbar from "./components/navbar/Navbar";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
@@ -38,6 +39,7 @@ function App() {
       >
         <Header />
         <Navbar />
+        <PaymentList />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/sign-in" element={<SignInPage />}></Route>

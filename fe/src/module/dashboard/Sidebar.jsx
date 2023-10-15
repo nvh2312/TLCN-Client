@@ -155,7 +155,7 @@ const sidebarLinks = [
   },
 ];
 const Sidebar = () => {
-  const { current } = useSelector((state) => state.user);  
+  const { current } = useSelector((state) => state.user); 
   return (
     <SidebarStyles className="sidebar">
       <div className="flex items-center justify-start">

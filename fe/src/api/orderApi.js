@@ -17,5 +17,9 @@ const orderApi = {
     const url = `/api/v1/orders/${id}`;
     return axiosClient.get(url);
   },
+  getPayment(data) {
+    const url = `/api/v1/payments/get-all-payments?page=${data.page}&limit=${data.limit}`;
+    return axiosClient.get(url);
+  },
 };
 export default orderApi;

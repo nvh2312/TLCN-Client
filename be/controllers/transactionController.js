@@ -1,4 +1,5 @@
 const Transaction = require("./../models/transactionModel");
+const factory = require("./handlerFactory");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 const moment = require("moment");
@@ -73,14 +74,14 @@ exports.createPaymentUrl = catchAsync(async (req, res, next) => {
 exports.returnPaymentStatus = catchAsync(async (req, res, next) => {
   let vnp_Params = req.body.invoice;
   let secureHash = vnp_Params.vnp_SecureHash;
-  delete vnp_Params['vnp_SecureHash'];
-  delete vnp_Params['vnp_SecureHashType'];
-  
+  delete vnp_Params["vnp_SecureHash"];
+  delete vnp_Params["vnp_SecureHashType"];
+
   vnp_Params = sortObject(vnp_Params);
-  
+
   let tmnCode = process.env.vnp_TmnCode;
   let secretKey = process.env.vnp_HashSecret;
-  
+
   let querystring = require("qs");
   let signData = querystring.stringify(vnp_Params, { encode: false });
   let crypto = require("crypto");
@@ -88,13 +89,16 @@ exports.returnPaymentStatus = catchAsync(async (req, res, next) => {
   let signed = hmac.update(new Buffer.from(signData, "utf-8")).digest("hex");
 
   if (secureHash === signed) {
-    if(vnp_Params.vnp_ResponseCode === "00" && vnp_Params.vnp_OrderInfo === "recharge") {
+    if (
+      vnp_Params.vnp_ResponseCode === "00" &&
+      vnp_Params.vnp_OrderInfo === "recharge"
+    ) {
       const newRecord = {
         user: req.user,
-        amount: Number(vnp_Params.vnp_Amount)/100,
+        amount: Number(vnp_Params.vnp_Amount) / 100,
         payments: "vnpay",
-        invoicePayment: vnp_Params
-      }
+        invoicePayment: vnp_Params,
+      };
       await Transaction.create(newRecord);
     }
     res
@@ -110,9 +114,14 @@ exports.returnPaypalStatus = catchAsync(async (req, res, next) => {
     user: req.user,
     amount: req.body.amount,
     payments: "paypal",
-    invoicePayment: req.body.invoicePayment
-  }
+    invoicePayment: req.body.invoicePayment,
+  };
   await Transaction.create(newRecord);
   res.status(201).json({ message: "success" });
+});
 
-})
+exports.getListPayments = factory.getAll(Transaction);
+exports.setUser = catchAsync(async (req, res, next) => {
+  if (req.user.role !== "admin") req.query.user = req.user.id;
+  next();
+});

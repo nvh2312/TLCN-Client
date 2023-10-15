@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../dashboard/Sidebar";
 import { useSelector } from "react-redux";
 

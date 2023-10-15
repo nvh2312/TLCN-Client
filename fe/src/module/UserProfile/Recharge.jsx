@@ -12,8 +12,9 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUser } from "../../redux/auth/userSlice";
+import { getUser, setRightBar } from "../../redux/auth/userSlice";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import Tooltip from "../../components/tooltip/Tooltip";
 import Swal from "sweetalert2";
 
 const schema = yup.object({
@@ -47,6 +48,9 @@ const Recharge = () => {
     }
   }, [current]);
 
+  const handleOpenModal = () => {
+    dispatch(setRightBar())
+  }
   const payWithVnpay = () => {
     setPayment("vnpay");
   };
@@ -105,11 +109,50 @@ const Recharge = () => {
     }
   };
   return (
-    <div className="bg-white rounded-lg">
+    <div className="bg-white rounded-lg relative">
       <DashboardHeading
         title="Nạp tiền"
         className="px-5 py-5"
       ></DashboardHeading>
+      <div className="absolute w-10 h-10 right-5 top-5 cursor-pointer" onClick={handleOpenModal}>
+        <Tooltip text="Lịch sử giao dịch">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              {" "}
+              <path
+                d="M2 12C2 17.5228 6.47715 22 12 22C13.8214 22 15.5291 21.513 17 20.6622M12 2C17.5228 2 22 6.47715 22 12C22 13.8214 21.513 15.5291 20.6622 17"
+                stroke="#23cf17"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              ></path>{" "}
+              <path
+                d="M12 9V13H16"
+                stroke="#23cf17"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>{" "}
+              <path
+                d="M17 20.6622C15.5291 21.513 13.8214 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 13.8214 21.513 15.5291 20.6622 17"
+                stroke="#23cf17"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeDasharray="0.5 3.5"
+              ></path>{" "}
+            </g>
+          </svg>
+        </Tooltip>
+      </div>
       <form className="pb-16" onSubmit={handleSubmit(handleReset)}>
         <Field>
           <Label htmlFor="amount">Số tiền cần nạp: </Label>
