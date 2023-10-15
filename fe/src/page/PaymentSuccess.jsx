@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 import userApi from "../api/userApi";
 
 const PaymentSuccess = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [params, setParams] = useState(null);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await userApi.statusPayment({invoice: params});
+        const response = await userApi.statusPayment({ invoice: params });
         window.opener.postMessage(response.code, window.location.origin);
       } catch (error) {
         window.opener.postMessage({ error: true }, window.location.origin);
@@ -24,7 +25,10 @@ const PaymentSuccess = () => {
       }
     };
     if (params) {
-      fetchData();
+      console.log(window.history.length);
+      if (Object.keys(params).length > 0) {
+        fetchData();
+      } else navigate(window.history.length <= 2 ? "/" : -1);
     }
   }, [params]);
 

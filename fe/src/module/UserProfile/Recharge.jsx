@@ -115,7 +115,7 @@ const Recharge = () => {
         className="px-5 py-5"
       ></DashboardHeading>
       <div className="absolute w-10 h-10 right-5 top-5 cursor-pointer" onClick={handleOpenModal}>
-        <Tooltip text="Lịch sử giao dịch">
+        <Tooltip direction="left" text="Lịch sử giao dịch">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -164,7 +164,7 @@ const Recharge = () => {
           )}
         </Field>
 
-        <div className="flex flex-col lg:mt-5 rounded-lg py-5 bg-white px-48">
+        <div className="flex flex-col lg:mt-5 rounded-lg py-5 bg-white px-10 md:px-48">
           <span className="text-xl font-bold">Phương thức thanh toán</span>
           <div className="flex flex-col xl:flex-row items-center justify-between mt-10 gap-3">
             <div
@@ -222,7 +222,7 @@ const Recharge = () => {
         {payment === "vnpay" && (
           <Button
             kind="primary"
-            className={`mx-auto w-[200px] mt-10 ${
+            className={`mx-[auto!important] w-[200px] mt-10 ${
               getValues("amount") >= 5000
                 ? ""
                 : "pointer-events-none opacity-75"

@@ -120,36 +120,6 @@ exports.createOne = (Model) =>
     if (Model == Product) {
       req.body.createdBy = req.user.id;
     }
-    if (Model == Order) {
-      const cart = req.body.cart;
-      for (const value of cart) {
-        const name =
-          value.product.title.length > 39
-            ? value.product.title.slice(0, 40)
-            : value.product.title;
-        const invent = await Product.findById(value.id);
-        if (value.quantity > invent.inventory) {
-          return next(
-            new AppError(`Số lượng hàng ${name} trong kho không đủ`, 500)
-          );
-        }
-      }
-
-      const doc = await Model.create(req.body);
-      for (const value of cart) {
-        await Product.findByIdAndUpdate(value.id, {
-          $inc: { inventory: -value.quantity },
-        });
-      }
-
-      return res.status(201).json({
-        status: "success",
-        data: {
-          id: doc.id,
-          totalPrice: doc.totalPrice,
-        },
-      });
-    }
 
     if (Model == Import) {
       const invoice = req.body.invoice;

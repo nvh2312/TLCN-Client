@@ -2,6 +2,9 @@ const Order = require("./../models/orderModel");
 const factory = require("./handlerFactory");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
+const Product = require("../models/productModel");
+const sendEmail = require("../utils/email");
+const mailTemplate = require("./mailTemplate");
 
 exports.checkStatusOrder = catchAsync(async (req, res, next) => {
   if (
@@ -17,7 +20,53 @@ exports.checkStatusOrder = catchAsync(async (req, res, next) => {
   next();
 });
 exports.getTableOrder = factory.getTable(Order);
-exports.createOrder = factory.createOne(Order);
+exports.createOrder = catchAsync(async (req, res, next) => {
+  const cart = req.body.cart;
+  for (const value of cart) {
+    const name =
+      value.product.title.length > 39
+        ? value.product.title.slice(0, 40)
+        : value.product.title;
+    const invent = await Product.findById(value.id);
+    if (value.quantity > invent.inventory) {
+      return next(
+        new AppError(`Số lượng hàng ${name} trong kho không đủ`, 500)
+      );
+    }
+  }
+
+  const doc = await Order.create(req.body);
+
+  for (const value of cart) {
+    await Product.findByIdAndUpdate(value.id, {
+      $inc: { inventory: -value.quantity },
+    });
+  }
+  try {
+    const domain = `${req.protocol}://${req.get("host")}`;
+    const message = mailTemplate(doc, domain);
+    await sendEmail({
+      email: req.user.email,
+      subject: "Đơn mua hàng tại HC.VN",
+      message,
+    });
+  } catch (err) {
+    return res.status(201).json({
+      status: "success",
+      data: {
+        id: doc.id,
+        totalPrice: doc.totalPrice,
+      },
+    });
+  }
+  return res.status(201).json({
+    status: "success",
+    data: {
+      id: doc.id,
+      totalPrice: doc.totalPrice,
+    },
+  });
+});
 exports.getOrder = factory.getOne(Order);
 exports.getAllOrders = factory.getAll(Order);
 exports.updateOrder = factory.updateOne(Order);
