@@ -82,7 +82,7 @@ const SubInformationProduct = ({ data }) => {
             </g>
           </svg>
         </TwitterShareButton>
-        <PinterestShareButton url={url}>
+        <PinterestShareButton url={url} media={data?.images[0]}>
           <svg
             fill="#be0e0e"
             viewBox="0 0 32 32"
