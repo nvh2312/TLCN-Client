@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import unAuthorizeMiddleware from "./unAuthorizeMiddleware";
 import userReducer from "../redux/auth/userSlice";
 import cartReducer from "../redux/cart/cartSlice";
 import feedbackReducer from "../redux/feedback/feedbackSlice";
@@ -19,6 +20,8 @@ const rootReducer = {
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(unAuthorizeMiddleware),
 });
 
 export default store;

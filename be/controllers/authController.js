@@ -184,6 +184,32 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 });
 
+exports.authorize = catchAsync(async (req, res, next) => {
+  if (req.cookies.jwt && req.cookies.jwt !== "loggedout") {
+    let token = req.cookies.jwt;
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return next(new AppError("Token người dùng không còn tồn tại.", 401));
+    }
+
+    // 4) Check if user changed password after the token was issued
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      res.cookie("jwt", "loggedout", {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true,
+      });
+      return next(
+        new AppError(
+          "Tài khoản gần đây đã thay đổi mật khẩu!",
+          401
+        )
+      );
+    }
+  }
+  next();
+});
+
 exports.protect = catchAsync(async (req, res, next) => {
   // 1) Getting token and check of it's there
   let token;
@@ -217,6 +243,10 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // 4) Check if user changed password after the token was issued
   if (currentUser.changedPasswordAfter(decoded.iat)) {
+    res.cookie("jwt", "loggedout", {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true,
+    });
     return next(
       new AppError(
         "Tài khoản gần đây đã thay đổi mật khẩu! Xin vui lòng đăng nhập lại.",

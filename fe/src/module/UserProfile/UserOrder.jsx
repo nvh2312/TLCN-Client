@@ -47,7 +47,7 @@ const UserOrder = () => {
       dispatch(refresh());
       setState(params.status);
     } catch (error) {
-      console.log(error.message);
+     
     }
   }, [page, state, params.status, update]);
 

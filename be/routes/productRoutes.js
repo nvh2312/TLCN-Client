@@ -6,6 +6,8 @@ const commentRouter = require("./../routes/commentRoutes");
 
 const router = express.Router();
 
+router.use(authController.authorize)
+
 router.use("/:productId/reviews", reviewRouter);
 router.use("/:productId/comments", commentRouter);
 router

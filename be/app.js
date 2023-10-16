@@ -31,8 +31,7 @@ if (process.env.NODE_ENV === "development") {
       credentials: true,
     })
   );
-}
-else{
+} else {
   app.use(cors());
 }
 // Serving static files
@@ -72,13 +71,6 @@ app.use(
 );
 
 // Serving static files
-
-// Test middleware
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  // console.log(req.headers);
-  next();
-});
 
 // 3) ROUTES
 app.use("/api/v1/users", userRouter);
