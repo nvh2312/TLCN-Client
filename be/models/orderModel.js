@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("./userModel");
+const Transaction = require("./transactionModel");
 
 const orderSchema = new mongoose.Schema(
   {
@@ -79,8 +79,14 @@ orderSchema.post("save", function () {
     this.constructor.updateUserBalance(this.user, -this.totalPrice);
 });
 
-orderSchema.post("update", function () {
-  // Xử lý sau khi cập nhật dữ liệu
+orderSchema.post("findOneAndUpdate", async function (doc) {
+  if (doc.payments !== "tiền mặt" && doc.status === "Cancelled")
+    await Transaction.create({
+      user: doc.user._id.toString(),
+      amount: doc.totalPrice,
+      payments: "refund",
+      order: doc.id,
+    });
 });
 
 const Order = mongoose.model("Order", orderSchema);

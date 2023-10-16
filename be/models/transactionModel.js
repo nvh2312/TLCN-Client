@@ -26,6 +26,7 @@ const transactionSchema = new mongoose.Schema(
       },
       default: "refund",
     },
+    order: String,
     invoicePayment: Object,
   },
   {
@@ -36,7 +37,6 @@ const transactionSchema = new mongoose.Schema(
 
 transactionSchema.statics.updateUserBalance = async function (userId, balance) {
   await User.findByIdAndUpdate(userId, { $inc: { balance: balance } });
-
 };
 transactionSchema.post("save", function () {
   this.constructor.updateUserBalance(this.user, this.amount);

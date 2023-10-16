@@ -11,6 +11,7 @@ import LoadingPage from "../../components/loading/LoadingPage";
 import Swal from "sweetalert2";
 import Skeleton from "../../components/skeleton/Skeleton";
 import { toast } from "react-toastify";
+import { getUser } from "../../redux/auth/userSlice";
 
 const InformationDetailOrder = () => {
   const navigate = useNavigate();
@@ -54,7 +55,8 @@ const InformationDetailOrder = () => {
           id: params.id,
         };
         try {
-          dispatch(cancelOrder(data));
+          await dispatch(cancelOrder(data));
+          if (orderId?.payments !== "tiền mặt") dispatch(getUser());
           navigate(-1);
         } catch (error) {
           console.log(error.message);

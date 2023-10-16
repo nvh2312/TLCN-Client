@@ -29,6 +29,7 @@
     "react-js-pagination": "^3.0.3",
     "react-redux": "^8.0.4",
     "react-router-dom": "6.2",
+    "react-share": "^4.4.1",
     "react-to-print": "^2.14.10",
     "react-toastify": "^9.0.8",
     "react-transition-group": "^4.4.5",
