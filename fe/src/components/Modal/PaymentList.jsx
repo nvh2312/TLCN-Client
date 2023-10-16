@@ -52,7 +52,7 @@ const PaymentList = () => {
     try {
       const response = await orderApi.getOrder(
         current._id,
-        `payments=vnpay,paypal,balance&page=${pageOrder}&limit=15`
+        `payments=vnpay,paypal,số dư&page=${pageOrder}&limit=15`
       );
       const newData = response.data.data;
       setOrderData((prevData) => [...prevData, ...newData]);
@@ -129,12 +129,10 @@ const PaymentList = () => {
 
   useEffect(() => {
     if (showPayment && isInitPayment) {
-      console.log("tab1");
       setIsInitPayment(false);
       fetchPaymentData();
     }
     if (showPayment && isInitOrder && !activeTab) {
-      console.log("tab2");
       setIsInitOrder(false);
       fetchOrderData();
     }
@@ -142,7 +140,7 @@ const PaymentList = () => {
 
   useEffect(() => {
     // if (location.pathname !== "/account/recharge") {
-      
+
     // }
     if (showPayment) dispatch(setRightBar());
     setIsInitOrder(true);
@@ -205,7 +203,9 @@ const PaymentList = () => {
               </h2>
             </div>
             <div
-              className="fixed top-[100px] right-0 bottom-0 pb-3 flex flex-col w-[500px] overflow-y-scroll"
+              className={`fixed top-[100px] right-0 bottom-0 flex flex-col w-[500px] overflow-y-scroll ${
+                hasMore ? "pb-20" : "pb-5"
+              }`}
               ref={wrapperRef}
             >
               {!loading &&
@@ -241,7 +241,7 @@ const PaymentList = () => {
                 paymentData?.map((value) => (
                   <div
                     key={value?.id}
-                    className="grid grid-cols-2 items-center justify-items-center gap-1 py-3 mb-1 border-2 border-gray-300"
+                    className="grid grid-cols-2 items-center justify-items-center gap-1 py-3 mb-0.5 border-2 border-gray-300"
                   >
                     <div className="text-xl text-black">
                       {value?.payments === "refund" ? "Hoàn tiền" : "Nạp tiền"}
@@ -272,7 +272,7 @@ const PaymentList = () => {
                 orderData?.map((value) => (
                   <div
                     key={value?.id}
-                    className="grid grid-cols-2 items-center justify-items-center gap-1 py-3 mb-1 border-2 border-gray-300"
+                    className="grid grid-cols-2 items-center justify-items-center gap-1 py-3 mb-0.5 border-2 border-gray-300"
                   >
                     <div className="text-xl text-black">Mua hàng</div>
                     <div className="text-xl text-green-400">

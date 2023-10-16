@@ -56,7 +56,7 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      <style jsx>{`
+      <style jsx="true">{`
         @media (max-width: 767px) {
           .justify-between {
             justify-content: space-around;

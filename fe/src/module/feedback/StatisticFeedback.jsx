@@ -22,7 +22,6 @@ const StatisticFeedback = ({ data }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(progressBarWidth);
   const stars = Array(5).fill(0);
   return (
     <div className="max-w-full w-[80%] xl:w-[1200px] h-[350px] bg-white rounded-lg mx-auto mt-6  border-2 border-solid feelback">

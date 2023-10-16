@@ -59,7 +59,7 @@ const Recharge = () => {
     setPayment("paypal");
   };
   function receiveMessage(e) {
-    if (e.origin === window.location.origin && e.data && e.data === "00") {
+    if (e.origin === window.location.origin && e.data && e.data.code === "00") {
       toast.dismiss();
       toast.success("Nạp tiền thành công");
       reset({
@@ -68,7 +68,7 @@ const Recharge = () => {
       setPayment("");
       dispatch(getUser());
     }
-    if (e.origin === window.location.origin && e.data && e.data === "97") {
+    if (e.origin === window.location.origin && e.data && e.data.code === "97") {
       toast.dismiss();
       toast.error("Sai dữ liệu");
     }

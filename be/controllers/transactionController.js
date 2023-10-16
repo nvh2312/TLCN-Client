@@ -103,7 +103,7 @@ exports.returnPaymentStatus = catchAsync(async (req, res, next) => {
     }
     res
       .status(201)
-      .json({ message: "success", code: vnp_Params.vnp_ResponseCode });
+      .json({ message: "success", code: vnp_Params.vnp_ResponseCode, invoice: vnp_Params });
   } else {
     res.status(201).json({ message: "success", code: "97" });
   }

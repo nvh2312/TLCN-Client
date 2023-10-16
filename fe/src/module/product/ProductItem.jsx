@@ -36,8 +36,7 @@ const ProductItem = ({
           {product?.title}
         </h3>
         {product?.inventory >= 5 && (
-          <span className="sm:hidden h-2 text-orange-500 font-medium mb-2 text-sm">
-          </span>
+          <span className="sm:hidden h-2 text-orange-500 font-medium mb-2 text-sm"></span>
         )}
         {product?.inventory < 5 && product?.inventory > 0 && (
           <span className="sm:h-auto h-10 text-orange-500 font-medium mb-2 text-sm">
@@ -49,7 +48,7 @@ const ProductItem = ({
             Sản phẩm hiện tại hết hàng
           </span>
         )}
-        {product?.inventory > 4 && <span className="mb-8"></span>}
+        {product?.inventory >= 5 && <span className="mb-8"></span>}
         <div className="flex items-center justify-between text-sm  mb-2">
           <span className="text-lg text-blue-700 font-semibold">
             {formatPrice(product?.promotion)}
@@ -77,9 +76,9 @@ const ProductItem = ({
             <span className="hidden sm:block text-sm line-through text-slate-400">
               {formatPrice(product?.price)}
             </span>
-            
-             <span className="sm:hidden text-sm line-through text-slate-400">
-              {product?.price/1000000 + " tr "}
+
+            <span className="sm:hidden text-sm line-through text-slate-400">
+              {product?.price / 1000000 + " tr "}
             </span>
             <span className="text-blue text-sm"> - {product?.percent}%</span>
           </div>

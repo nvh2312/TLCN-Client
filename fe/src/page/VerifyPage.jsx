@@ -9,9 +9,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { changeState, verify } from "../redux/auth/userSlice";
+import { changeState, logout, verify } from "../redux/auth/userSlice";
 import { useDispatch } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
+import Swal from "sweetalert2";
+import userApi from "../api/userApi";
 
 const schema = yup.object({
   verify: yup
@@ -55,7 +57,6 @@ const VerifyPage = () => {
 
   const handleVerify = async (values) => {
     if (!isValid) return;
-    console.log(values);
     const data = {
       encode: values.verify,
     };
@@ -71,7 +72,6 @@ const VerifyPage = () => {
       });
     } catch (error) {
       dem.current = dem.current + 1;
-      console.log(dem.current);
       if (dem.current >= 3) {
         const data = {
           state: "ban",
@@ -92,12 +92,33 @@ const VerifyPage = () => {
       }
     }
   };
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Đăng xuất ",
+      text: "Bạn có chắc chắn muốn đăng xuất không ?",
+      showCancelButton: true,
+      icon: "question",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Có",
+      cancelButtonText: "Không",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const action = logout();
+        dispatch(action);
+        await userApi.logout();
+        navigate("/");
+        Swal.fire("Tạm biệt! Hẹn gặp lại quý khách");
+      }
+    });
+  };
   return (
     <AuthenticationPage>
       <form
         onSubmit={handleSubmit(handleVerify)}
         autoComplete="off"
-        className="pb-3"
+        className="pb-3 relative"
       >
         <Field>
           <Label htmlFor="verify">Mã xác nhận</Label>
@@ -126,6 +147,30 @@ const VerifyPage = () => {
         >
           Xác nhận
         </Button>
+        <div onClick={handleLogout} className="bg-white hover:bg-gray-100 absolute w-10 h-10 -top-40 left-5 rounded-full shadow-md cursor-pointer">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              {" "}
+              <path
+                d="M6 12H18M6 12L11 7M6 12L11 17"
+                stroke="#000000"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>{" "}
+            </g>
+          </svg>
+        </div>
       </form>
     </AuthenticationPage>
   );

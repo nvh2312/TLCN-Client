@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require("./userModel");
 
 const orderSchema = new mongoose.Schema(
   {
@@ -34,7 +35,7 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: [true, "Phải có phương thức thanh toán"],
       enum: {
-        values: ["tiền mặt", "paypal"],
+        values: ["tiền mặt", "paypal", "vnpay", "số dư"],
         message: "Phương thức thanh toán là tiền mặt hoặc ngân hàng",
       },
     },
@@ -59,6 +60,8 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
+orderSchema.index({ "$**": "text" });
+
 orderSchema.pre(/^find/, function (next) {
   this.populate({
     path: "user",
@@ -67,7 +70,18 @@ orderSchema.pre(/^find/, function (next) {
 
   next();
 });
-orderSchema.index({ "$**": "text" });
+
+orderSchema.statics.updateUserBalance = async function (userId, balance) {
+  await User.findByIdAndUpdate(userId, { $inc: { balance: balance } });
+};
+orderSchema.post("save", function () {
+  if (this.payments === "số dư")
+    this.constructor.updateUserBalance(this.user, -this.totalPrice);
+});
+
+orderSchema.post("update", function () {
+  // Xử lý sau khi cập nhật dữ liệu
+});
 
 const Order = mongoose.model("Order", orderSchema);
 

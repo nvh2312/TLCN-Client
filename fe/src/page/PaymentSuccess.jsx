@@ -17,7 +17,10 @@ const PaymentSuccess = () => {
     const fetchData = async () => {
       try {
         const response = await userApi.statusPayment({ invoice: params });
-        window.opener.postMessage(response.code, window.location.origin);
+        window.opener.postMessage(
+          { code: response.code, invoice: response.invoice },
+          window.location.origin
+        );
       } catch (error) {
         window.opener.postMessage({ error: true }, window.location.origin);
       } finally {

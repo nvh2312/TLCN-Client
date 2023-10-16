@@ -23,7 +23,6 @@ export const createFeedback = createAsyncThunk(
 export const getFeedback = createAsyncThunk(
   "user/getFeedback",
   async (payload) => {
-    console.log(payload);
     const query = `page=${payload.page}&limit=3`;
     const response = await reviewApi.getReview(payload.id, query);
     return response.data;

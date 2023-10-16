@@ -35,6 +35,7 @@ const ProductInformation = () => {
 
   useEffect(() => {
     try {
+      if(productId?.brand)
       dispatch(getProductBrand(productId?.brand?.id));
     } catch (error) {
       console.log(error.message);
