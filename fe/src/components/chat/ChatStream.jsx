@@ -70,12 +70,12 @@ const ChatStream = () => {
 
       setClient(chatClient);
     }
-    init();
+    if (current) init();
 
     if (client)
       return () => {
-        setClient(null);
         client.disconnectUser();
+        setClient(null);
       };
   }, [user.id, tokenStream]);
 
@@ -105,38 +105,40 @@ const ChatStream = () => {
           className="px-5 py-5"
         ></DashboardHeading>
         <div className="w-70% xl:w-[900px] h-[750px] rounded-lg mx-auto ">
-          <Chat client={client} theme="messaging light">
-            <div className="chat">
-              {role === "user" && (
-                <>
-                  {" "}
-                  <ChannelList filters={filters} sort={sorts} />
-                  <Channel>
-                    <Window>
-                      <ChannelHeader />
-                      <MessageList />
-                      <MessageInput />
-                    </Window>
-                    <Thread />
-                  </Channel>
-                </>
-              )}
-              {role === "admin" && (
-                <>
-                  {" "}
-                  <ChannelList filters={filtersAdmin} sort={sorts} />
-                  <Channel>
-                    <Window>
-                      <ChannelHeader />
-                      <MessageList />
-                      <MessageInput />
-                    </Window>
-                    <Thread />
-                  </Channel>
-                </>
-              )}
-            </div>
-          </Chat>
+          {current && (
+            <Chat client={client} theme="messaging light">
+              <div className="chat">
+                {role === "user" && (
+                  <>
+                    {" "}
+                    <ChannelList filters={filters} sort={sorts} />
+                    <Channel>
+                      <Window>
+                        <ChannelHeader />
+                        <MessageList />
+                        <MessageInput />
+                      </Window>
+                      <Thread />
+                    </Channel>
+                  </>
+                )}
+                {role === "admin" && (
+                  <>
+                    {" "}
+                    <ChannelList filters={filtersAdmin} sort={sorts} />
+                    <Channel>
+                      <Window>
+                        <ChannelHeader />
+                        <MessageList />
+                        <MessageInput />
+                      </Window>
+                      <Thread />
+                    </Channel>
+                  </>
+                )}
+              </div>
+            </Chat>
+          )}
         </div>
       </div>
     </>
