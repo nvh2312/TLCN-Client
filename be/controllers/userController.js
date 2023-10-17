@@ -56,7 +56,7 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 });
 
 exports.createUser = (req, res) => {
-  res.status(500).json({
+  return res.status(500).json({
     status: "error",
     message: "This route is not defined! Please use /signup instead",
   });
@@ -77,7 +77,7 @@ exports.createAddress = catchAsync(async (req, res) => {
   arr.push(data);
   user.address = arr;
   await user.save({ validateBeforeSave: false });
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     message: "You have already added address successfully.",
     data: user,
@@ -100,12 +100,12 @@ exports.updateAddress = catchAsync(async (req, res) => {
     arr[id] = data;
     user.address = arr;
     await user.save({ validateBeforeSave: false });
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "You have already updated address successfully.",
     });
   }
-  res.status(500).json({
+  return res.status(500).json({
     status: "error",
     message: "This data is not exist. Please try again!!!",
     data: user,
@@ -129,7 +129,7 @@ exports.deleteAddress = catchAsync(async (req, res) => {
       data: user,
     });
   }
-  res.status(500).json({
+  return res.status(500).json({
     status: "error",
     message: "This data is not exist. Please try again!!!",
   });

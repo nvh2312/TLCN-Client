@@ -25,10 +25,9 @@ const DropdownSelect = ({
   };
 
   useEffect(() => {
-    if (dropdownValue === "Chọn") {
-      setLabel(dropdownLabel);
-    }
-  }, [dropdownValue]);
+    setLabel(dropdownLabel);
+  }, [data, dropdownLabel]);
+
   return (
     <div className="relative w-[300px]" ref={nodeRef}>
       <div

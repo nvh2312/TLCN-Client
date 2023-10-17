@@ -81,17 +81,27 @@ const UserAddress = () => {
   };
 
   const fetchDistrict = async () => {
+    setValue("dictrict", "");
+    setValue("ward", "");
     const { data } = await axios.get(
       `https://provinces.open-api.vn/api/p/${provinceId}?depth=2`
     );
     setDistrict(data.districts);
+    setDistrictId("");
   };
 
   const fetchWard = async () => {
+    setValue("ward", "");
     const { data } = await axios.get(
       `https://provinces.open-api.vn/api/d/${districtId}?depth=2`
     );
     setWard(data.wards);
+  };
+
+  const handleCloseModal = () => {
+    setProvinceId("");
+    setDistrictId("");
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -100,9 +110,23 @@ const UserAddress = () => {
       behavior: "smooth",
     });
     fetchProvince();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     fetchDistrict();
+  }, [provinceId]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     fetchWard();
-  }, [provinceId, districtId]);
+  }, [districtId]);
 
   useEffect(() => {
     if (showModal === false) {
@@ -137,7 +161,7 @@ const UserAddress = () => {
       dispatch(addAddress(dataAddress));
       toast.dismiss();
       toast.success("Thêm thành công địa chỉ");
-      setShowModal(false);
+      handleCloseModal();
     } catch (error) {
       toast.dismiss();
       toast.error(error.message);
@@ -183,9 +207,7 @@ const UserAddress = () => {
 
       <ModalAdvanced
         visible={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
+        onClose={handleCloseModal}
         bodyClassName="w-[450px] sm:w-[600px] lg:w-[750px] bg-white  rounded-lg relative z-10 content h-[650px]  overflow-x-hidden"
       >
         <div className="overflow-y-auto h-[650px] px-10 py-5 ">
@@ -245,7 +267,11 @@ const UserAddress = () => {
                 )}
               </div>
 
-              <div className="flex flex-col items-start gap-4 mb-5">
+              <div
+                className={`flex flex-col items-start gap-4 mb-5 ${
+                  provinceId === "" ? "pointer-events-none opacity-50" : ""
+                }`}
+              >
                 <Label htmlFor="district">* Quận/Huyện</Label>
                 <DropdownSelect
                   control={control}
@@ -264,7 +290,11 @@ const UserAddress = () => {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-              <div className="flex flex-col items-start gap-4 mb-5">
+              <div
+                className={`flex flex-col items-start gap-4 mb-5 ${
+                  districtId === "" ? "pointer-events-none opacity-50" : ""
+                }`}
+              >
                 <Label htmlFor="ward">* Phường/Xã</Label>
                 <DropdownSelect
                   control={control}
@@ -299,7 +329,7 @@ const UserAddress = () => {
               <button
                 className="p-3 text-base font-medium bg-white text-[#316BFF] rounded-lg border border-solid border-[blue]"
                 type="button"
-                onClick={() => setShowModal(false)}
+                onClick={handleCloseModal}
               >
                 Hủy bỏ
               </button>

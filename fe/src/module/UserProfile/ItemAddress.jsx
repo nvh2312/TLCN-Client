@@ -65,52 +65,100 @@ const ItemAddress = ({ data, data_key }) => {
   const [district, setDistrict] = useState([]);
   const [districtId, setDistrictId] = useState("");
   const [ward, setWard] = useState([]);
-
+  const [provinceLabel, setProvinceLabel] = useState(data.province);
+  const [districtLabel, setDistrictLabel] = useState(data.district);
+  const [wardLabel, setWardLabel] = useState(data.ward);
   const fetchProvince = async () => {
-    const { data } = await axios.get("https://provinces.open-api.vn/api/p");
-    setProvince(data);
+    const response = await axios.get("https://provinces.open-api.vn/api/p");
+    const provinceCode = await response.data.find(
+      (value) => value.name === data.province
+    );
+    setProvince(response.data);
+    setValue("province", data.province);
+    setValue("district", data.district);
+    setValue("ward", data.ward);
+    setProvinceId(provinceCode.code);
+    reset({
+      fullname: data.name,
+      sdt: data.phone,
+      province: getValues("province"),
+      district: getValues("district"),
+      ward: getValues("ward"),
+      address: data.detail,
+    });
+    disableBodyScroll(bodyStyle);
+    isLocked = true;
   };
 
   const fetchDistrict = async () => {
-    const { data } = await axios.get(
+    const resDist = await axios.get(
       `https://provinces.open-api.vn/api/p/${provinceId}?depth=2`
     );
-    setDistrict(data.districts);
+    if (district.length > 0) {
+      setValue("district", "");
+      setValue("ward", "");
+      setDistrictId("");
+      setDistrictLabel("Chọn");
+      setWardLabel("Chọn");
+    } else {
+      const res = await resDist?.data?.districts?.find(
+        (value) => value.name === data.district
+      );
+      setDistrictId(res.code);
+    }
+    setDistrict(resDist.data.districts);
   };
 
   const fetchWard = async () => {
-    const { data } = await axios.get(
+    if (ward.length > 0) {
+      setValue("ward", "");
+      setWardLabel("Chọn");
+    }
+    const resWard = await axios.get(
       `https://provinces.open-api.vn/api/d/${districtId}?depth=2`
     );
-    setWard(data.wards);
+    setWard(resWard.data.wards);
+  };
+
+  const handleCloseModal = () => {
+    setProvinceId("");
+    setDistrictId("");
+    setProvince([]);
+    setDistrict([]);
+    setWard([]);
+    setProvinceLabel(data.province);
+    setDistrictLabel(data.district);
+    setWardLabel(data.ward);
+    setShowModal(false);
   };
 
   useEffect(() => {
-    fetchProvince();
-    fetchDistrict();
-    fetchWard();
-  }, [provinceId, districtId]);
-
-  useEffect(() => {
-    if (showModal === true) {
-      setValue("province", data.province);
-      setValue("district", data.district);
-      setValue("ward", data.ward);
-      reset({
-        fullname: data.name,
-        sdt: data.phone,
-        province: getValues("province"),
-        district: getValues("district"),
-        ward: getValues("ward"),
-        address: data.detail,
-      });
-      disableBodyScroll(bodyStyle);
-      isLocked = true;
-    } else {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    if (showModal) fetchProvince();
+    else {
       enableBodyScroll(bodyStyle);
       isLocked = false;
     }
   }, [showModal]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    if (provinceId) fetchDistrict();
+  }, [provinceId]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    if (districtId) fetchWard();
+  }, [districtId]);
 
   const handleDelete = () => {
     Swal.fire({
@@ -152,7 +200,7 @@ const ItemAddress = ({ data, data_key }) => {
       dispatch(editAddress(dataEdit));
       toast.dismiss();
       toast.success("Cập nhật địa chỉ thành công", { pauseOnHover: false });
-      setShowModal(false);
+      handleCloseModal();
     } catch (error) {
       console.log(error.message);
     }
@@ -223,9 +271,7 @@ const ItemAddress = ({ data, data_key }) => {
 
       <ModalAdvanced
         visible={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
+        onClose={handleCloseModal}
         bodyClassName="w-[450px] sm:w-[600px] lg:w-[750px] bg-white  rounded-lg relative z-10 content  overflow-y-auto "
       >
         <div className="h-[650px] overflow-x-hidden px-10 py-5 ">
@@ -273,7 +319,7 @@ const ItemAddress = ({ data, data_key }) => {
                 <DropdownSelect
                   control={control}
                   name="province"
-                  dropdownLabel={data.province}
+                  dropdownLabel={provinceLabel}
                   setValue={setValue}
                   data={province}
                   onClick={(id) => setProvinceId(id)}
@@ -285,31 +331,39 @@ const ItemAddress = ({ data, data_key }) => {
                 )}
               </div>
 
-              <div className="flex flex-col items-start gap-4 mb-5">
+              <div
+                className={`flex flex-col items-start gap-4 mb-5 ${
+                  provinceId === "" ? "pointer-events-none opacity-50" : ""
+                }`}
+              >
                 <Label htmlFor="district">* Quận/Huyện</Label>
                 <DropdownSelect
                   control={control}
                   name="district"
-                  dropdownLabel={data.district}
+                  dropdownLabel={districtLabel}
                   setValue={setValue}
                   data={district}
                   onClick={(id) => setDistrictId(id)}
                 ></DropdownSelect>
-                {errors.dictrict && (
+                {errors.district && (
                   <p className="text-red-500 text-base font-medium">
-                    {errors.dictrict?.message}
+                    {errors.district?.message}
                   </p>
                 )}
               </div>
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-              <div className="flex flex-col items-start gap-4 mb-5">
+              <div
+                className={`flex flex-col items-start gap-4 mb-5 ${
+                  districtId === "" ? "pointer-events-none opacity-50" : ""
+                }`}
+              >
                 <Label htmlFor="ward">* Phường/Xã</Label>
                 <DropdownSelect
                   control={control}
                   name="ward"
-                  dropdownLabel={data.ward}
+                  dropdownLabel={wardLabel}
                   setValue={setValue}
                   data={ward}
                 ></DropdownSelect>
@@ -339,7 +393,7 @@ const ItemAddress = ({ data, data_key }) => {
               <button
                 className="p-3 text-base font-medium bg-white text-[#316BFF] rounded-lg border border-solid border-[blue]"
                 type="button"
-                onClick={() => setShowModal(false)}
+                onClick={handleCloseModal}
               >
                 Hủy bỏ
               </button>
