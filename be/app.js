@@ -20,6 +20,7 @@ const orderRouter = require("./routes/orderRoutes");
 const importRouter = require("./routes/importRoutes");
 const commentRouter = require("./routes/commentRoutes");
 const transactionRouter = require("./routes/transactionRoutes");
+const chatBotRouter = require("./routes/chatBotRoutes");
 
 const app = express();
 // Add headers before the routes are defined
@@ -73,6 +74,7 @@ app.use(
 // Serving static files
 
 // 3) ROUTES
+app.use("/", chatBotRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/categories", categoryRouter);
