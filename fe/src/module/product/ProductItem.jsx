@@ -20,7 +20,7 @@ const ProductItem = ({
 
   return (
     <div
-      className={`flex flex-col rounded-lg p-3 bg-white h-full mx-2 cursor-pointer  ${className}`}
+      className={`group flex flex-col rounded-lg p-3 bg-white h-full mx-2 cursor-pointer  ${className}`}
       onClick={onClickItem}
     >
       <img
@@ -29,7 +29,7 @@ const ProductItem = ({
           "https://lh3.googleusercontent.com/ZQFbZeosDa1ODQnaaunB72fejXPcl_hg7rfEcgVlZSkgtOTAHQH1M4RxVrH2cLN6gjqJvOAq1b8CeE92gjqDN2W3b2HsMkxb=rw"
         }
         alt=""
-        className="w-full h-[180px] object-cover rounded-lg mb-2 transition-transform hover:scale-105"
+        className="w-full h-[180px] object-cover rounded-lg mb-2 transition-transform group-hover:scale-105"
       />
       <div className="flex flex-col flex-1">
         <h3 className="line-clamp-2 mb-2 text-sm font-medium">

@@ -61,6 +61,13 @@ const SignInPage = () => {
     ) {
       return navigate("/verify");
     }
+    if (JSON.parse(localStorage.getItem("changePass")) === true) {
+      localStorage.removeItem("changePass");
+      toast.dismiss();
+      toast.error(
+        "Tài khoản gần đây đã thay đổi mật khẩu. Vui lòng đăng nhập lại!!!"
+      );
+    }
   }, []);
 
   const handleSignIn = async (values) => {

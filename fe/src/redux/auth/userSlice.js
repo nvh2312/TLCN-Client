@@ -84,6 +84,14 @@ export const updateInfoUser = createAsyncThunk(
   }
 );
 
+export const updatePassword = createAsyncThunk(
+  "user/updatePassword",
+  async (payload) => {
+    const response = await userApi.updatePassword(payload);
+    return response.data;
+  }
+);
+
 export const getUser = createAsyncThunk("user/getUser", async () => {
   const response = await userApi.getUser();
   localStorage.setItem(StorageKeys.USER, JSON.stringify(response.data.data));

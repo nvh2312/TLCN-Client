@@ -5,9 +5,11 @@ const unAuthorizeMiddleware = (store) => (next) => (action) => {
     action.error &&
     action.error?.message?.includes("Tài khoản gần đây đã thay đổi mật khẩu!")
   ) {
+    localStorage.setItem("changePass", "true");
     store.dispatch(logout());
-    if (action.error.message === "Tài khoản gần đây đã thay đổi mật khẩu!")
-      window.location.reload();
+    if (action.error.message === "Tài khoản gần đây đã thay đổi mật khẩu!") {
+      window.location.href = "/sign-in";
+    }
   }
 
   return next(action);

@@ -9,9 +9,10 @@ import * as yup from "yup";
 import Button from "../../components/button/Button";
 import userApi from "../../api/userApi";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { updatePassword } from "../../redux/auth/userSlice";
 
 const schema = yup.object({
   passwordCurrent: yup
@@ -52,6 +53,7 @@ const UpdatePassword = () => {
 
   const { current } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch= useDispatch();
 
   useEffect(() => {
     if (current === null) {
@@ -64,7 +66,8 @@ const UpdatePassword = () => {
   const handleReset = async (values) => {
     if (!isValid) return;
     try {
-      const response = await userApi.updatePassword(values);
+      // const response = await userApi.updatePassword(values);
+      dispatch(updatePassword(values));
       toast.dismiss();
       toast.success("Đổi mật khẩu thành công");
       reset({
