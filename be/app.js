@@ -58,6 +58,15 @@ app.use("/api", limiter);
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+  if(req.query['hub.verify_token']) {
+    req.query.hub_verify_token = req.query[hub.verify_token];
+    req.query.hub_challenge = req.query[hub.challenge];
+    req.query.hub_mode = req.query[hub.mode];
+  }
+  next();
+});
+
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
