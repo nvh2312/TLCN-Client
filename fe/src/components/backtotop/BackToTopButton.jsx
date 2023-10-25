@@ -22,7 +22,7 @@ const BackToTopButton = () => {
     <div>
       {backToTopButton && (
         <button
-          className="fixed bottom-[40px] right-[25px] p-2  bg-black rounded-full z-50"
+          className="fixed bottom-[100px] right-[25px] p-2  bg-black rounded-full z-50"
           onClick={scrollUp}
         >
           <span className="text-white font-bold">
