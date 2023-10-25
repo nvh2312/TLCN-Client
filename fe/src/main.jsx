@@ -6,6 +6,8 @@ import App from "./App";
 import "./styles/index.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
+import { FacebookProvider, CustomChat } from "react-facebook";
+import { pageId, appId } from "./config";
 import store from "./redux/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,6 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <App />
       <ToastContainer></ToastContainer>
+      <FacebookProvider appId={appId} chatSupport>
+        <CustomChat pageId={pageId} minimized={true} />
+      </FacebookProvider>
     </BrowserRouter>
   </Provider>
   // </React.StrictMode>
