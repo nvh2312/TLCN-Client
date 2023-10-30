@@ -102,7 +102,7 @@ const Navbar = () => {
   }, [show]);
 
   return (
-    <nav className="max-w-full bg-primary h-[60px] md:h-[80px] sticky z-50 shadow-md transition-all top-0 text-white -translate-y-0.5 px-[8px] md:px-[20px]">
+    <nav className="max-w-full bg-primary h-[60px] md:h-[80px] sticky z-[1001] shadow-md transition-all top-0 text-white -translate-y-0.5 px-[8px] md:px-[20px]">
       <div className="container flex items-center h-full justify-between">
         <div className="flex items-center justify-center gap-2">
           <Link

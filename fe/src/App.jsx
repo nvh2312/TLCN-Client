@@ -28,6 +28,7 @@ import Navbar from "./components/navbar/Navbar";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { key } from "./utils/constants/key";
 import ChatStream from "./components/chat/ChatStream";
+import NearestLocationPage from "./page/NearestLocationPage";
 
 function App() {
   return (
@@ -42,6 +43,10 @@ function App() {
         <PaymentList />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
+          <Route
+            path="/nearest-location"
+            element={<NearestLocationPage />}
+          ></Route>
           <Route path="/sign-in" element={<SignInPage />}></Route>
           <Route path="/sign-up" element={<SignUpPage />}></Route>
           <Route path="/verify" element={<VerifyPage />}></Route>

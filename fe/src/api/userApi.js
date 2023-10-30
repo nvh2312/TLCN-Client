@@ -82,5 +82,9 @@ const userApi = {
     const url = "/api/v1/payments/return_paypal_status";
     return axiosClient.post(url, data);
   },
+  nearestLocation(data) {
+    const url = `/api/v1/locations/get-nearest-location?latitude=${data.latitude}&longitude=${data.longitude}`;
+    return axiosClient.get(url);
+  },
 };
 export default userApi;

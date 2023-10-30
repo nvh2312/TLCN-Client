@@ -10,7 +10,7 @@ const Header = () => {
         </div>
         <div className="flex items-center justify-center gap-x-4 md:gap-x-8">
           <Link
-            to="/"
+            to="/nearest-location"
             className="flex gap-x-1 items-center justify-between px-5 hover:text-yellow-400"
           >
             <svg
