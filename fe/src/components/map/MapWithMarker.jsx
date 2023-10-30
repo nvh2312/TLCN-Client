@@ -15,7 +15,7 @@ const MapWithMarker = ({ address }) => {
       <Marker
         position={position}
         icon={L.icon({
-          iconUrl: "/node_modules/leaflet/dist/images/marker-icon.png",
+          iconUrl: "/images/marker-icon.png",
         })}
       />
     </MapContainer>
