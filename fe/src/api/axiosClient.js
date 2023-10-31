@@ -4,14 +4,14 @@ import Config from "../config";
 const axiosClient =
   Config?.env === "developer"
     ? axios.create({
-        baseURL: "http://localhost:3000/",
+        baseURL: Config.baseUrl,
         headers: {
           "Content-Type": "application/JSON",
         },
         withCredentials: true,
       })
     : axios.create({
-        baseURL: "/",
+        baseURL: Config.baseUrl,
         headers: {
           "Content-Type": "application/JSON",
         },

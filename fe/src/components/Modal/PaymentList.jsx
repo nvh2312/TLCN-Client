@@ -203,7 +203,7 @@ const PaymentList = () => {
               </h2>
             </div>
             <div
-              className={`fixed top-[100px] right-0 bottom-0 flex flex-col w-[500px] overflow-y-scroll ${
+              className={`fixed top-[100px] right-0 bottom-0 flex flex-col w-[500px] overflow-y-auto ${
                 hasMore ? "pb-20" : "pb-5"
               }`}
               ref={wrapperRef}

@@ -3,6 +3,7 @@ const factory = require("./handlerFactory");
 const catchAsync = require("./../utils/catchAsync");
 const AppError = require("./../utils/appError");
 const moment = require("moment");
+const io = require("../socket");
 
 function sortObject(obj) {
   let sorted = {};
@@ -100,10 +101,17 @@ exports.returnPaymentStatus = catchAsync(async (req, res, next) => {
         invoicePayment: vnp_Params,
       };
       await Transaction.create(newRecord);
+      io.getIO().emit("recharge", {
+        action: "add",
+        user: req.user._id.toString(),
+        amount: Number(vnp_Params.vnp_Amount) / 100,
+      });
     }
-    res
-      .status(201)
-      .json({ message: "success", code: vnp_Params.vnp_ResponseCode, invoice: vnp_Params });
+    res.status(201).json({
+      message: "success",
+      code: vnp_Params.vnp_ResponseCode,
+      invoice: vnp_Params,
+    });
   } else {
     res.status(201).json({ message: "success", code: "97" });
   }
@@ -116,7 +124,13 @@ exports.returnPaypalStatus = catchAsync(async (req, res, next) => {
     payments: "paypal",
     invoicePayment: req.body.invoicePayment,
   };
+
   await Transaction.create(newRecord);
+  io.getIO().emit("recharge", {
+    action: "add",
+    user: req.user._id.toString(),
+    amount: req.body.amount,
+  });
   res.status(201).json({ message: "success" });
 });
 

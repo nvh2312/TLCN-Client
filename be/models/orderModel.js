@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Transaction = require("./transactionModel");
 const User = require("./userModel");
+const io = require("../socket");
+
 
 const orderSchema = new mongoose.Schema(
   {
@@ -81,13 +83,20 @@ orderSchema.post("save", function () {
 });
 
 orderSchema.post("findOneAndUpdate", async function (doc) {
-  if (doc.payments !== "tiền mặt" && doc.status === "Cancelled")
+  if (doc.payments !== "tiền mặt" && doc.status === "Cancelled"){
     await Transaction.create({
       user: doc.user._id.toString(),
       amount: doc.totalPrice,
       payments: "refund",
       order: doc.id,
     });
+    io.getIO().emit("recharge", {
+      action: "refund",
+      user: doc.user._id.toString(),
+      amount: doc.totalPrice,
+      order: doc.id,
+    });
+  }
 });
 
 const Order = mongoose.model("Order", orderSchema);

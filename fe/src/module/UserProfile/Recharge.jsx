@@ -60,13 +60,13 @@ const Recharge = () => {
   };
   function receiveMessage(e) {
     if (e.origin === window.location.origin && e.data && e.data.code === "00") {
-      toast.dismiss();
-      toast.success("Nạp tiền thành công");
+      // toast.dismiss();
+      // toast.success("Nạp tiền thành công");
       reset({
         amount: "",
       });
       setPayment("");
-      dispatch(getUser());
+      // dispatch(getUser());
     }
     if (e.origin === window.location.origin && e.data && e.data.code === "97") {
       toast.dismiss();
@@ -266,20 +266,20 @@ const Recharge = () => {
               }}
               onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
-                Swal.fire(
-                  "Thanh toán thành công!",
-                  `Tài khoản của bạn đã được nạp ${
-                    getValues("amount") || 5000
-                  }`,
-                  "success"
-                );
+                // Swal.fire(
+                //   "Thanh toán thành công!",
+                //   `Tài khoản của bạn đã được nạp ${
+                //     getValues("amount") || 5000
+                //   }`,
+                //   "success"
+                // );
 
                 const record = {
                   amount: getValues("amount") || 5000,
                   invoicePayment: order,
                 };
                 const response = await userApi.statusPaypal(record);
-                dispatch(getUser());
+                // dispatch(getUser());
                 reset({
                   amount: "",
                 });

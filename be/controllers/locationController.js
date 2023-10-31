@@ -8,7 +8,6 @@ exports.getLocation = factory.getOne(Location);
 
 exports.nearestLocation = catchAsync(async (req, res, next) => {
   const { latitude, longitude } = req.query;
-  console.log(latitude, longitude);
   const nearestLocationPromise = Location.findOne({
     location: {
       $near: {

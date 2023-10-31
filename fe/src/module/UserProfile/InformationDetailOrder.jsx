@@ -56,7 +56,7 @@ const InformationDetailOrder = () => {
         };
         try {
           await dispatch(cancelOrder(data));
-          if (orderId?.payments !== "tiền mặt") dispatch(getUser());
+          // if (orderId?.payments !== "tiền mặt") dispatch(getUser());
           navigate(-1);
         } catch (error) {
           console.log(error.message);
