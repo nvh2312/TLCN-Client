@@ -56,8 +56,10 @@ const CommentSlice = createSlice({
     commentUpdate: false,
     commentDelete: false,
     commentLike: false,
-    comment: {},
+    comment: [],
+    resetDelete: false,
     totalPage: null,
+    currentPage: 1,
     status: action_status.IDLE,
   },
   reducers: {
@@ -67,6 +69,42 @@ const CommentSlice = createSlice({
       state.commentDelete = false;
       state.commentLike = false;
     },
+    reloadComment: (state, action) => {
+      if (action.payload.action === "create") {
+        if (state.currentPage === 1) {
+          const updatedComments = [...state.comment];
+          if (state.comment.length === 3) {
+            updatedComments.pop();
+          }
+          updatedComments.unshift(action.payload.comment);
+          state.comment = updatedComments;
+          state.totalPage = action.payload.totalPages;
+        } else {
+          state.currentPage = 1;
+        }
+      }
+      if (action.payload.action === "update") {
+        const updatedComments = [...state.comment];
+        const updatedCommentIndex = updatedComments.findIndex(
+          (p) => p._id === action.payload.comment._id
+        );
+        if (updatedCommentIndex > -1) {
+          updatedComments[updatedCommentIndex] = action.payload.comment;
+          state.comment = updatedComments;
+        }
+      }
+      if (action.payload.action === "delete") {
+        if (state.currentPage > action.payload.totalPages) {
+          state.currentPage = action.payload.totalPages;
+        }
+        else {
+          state.resetDelete = !state.resetDelete;
+        }
+      }
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: {
     [getComment.pending]: (state, action) => {
@@ -74,7 +112,7 @@ const CommentSlice = createSlice({
     },
     [getComment.fulfilled]: (state, action) => {
       state.status = action_status.SUCCEEDED;
-      state.comment = action.payload;
+      state.comment = action.payload.data;
       state.totalPage = action.payload.totalPage;
     },
     [getComment.rejected]: (state, action) => {
@@ -96,5 +134,5 @@ const CommentSlice = createSlice({
 });
 
 const { actions, reducer } = CommentSlice;
-export const { refresh } = actions;
+export const { refresh, reloadComment, setCurrentPage } = actions;
 export default reducer;

@@ -7,7 +7,21 @@ const Order = require("./../models/orderModel");
 const Import = require("./../models/importModel");
 const User = require("./../models/userModel");
 const Comment = require("./../models/commentModel");
+const io = require("../socket");
 
+async function findRootCommentByChildren(commentId) {
+  const comment = await Comment.findById(commentId);
+
+  if (!comment) {
+    return null;
+  }
+
+  if (!comment.parent) {
+    return comment;
+  }
+
+  return findRootCommentByChildren(comment.parent);
+}
 
 function handleQuery(req, value) {
   const obj = {};
@@ -78,9 +92,7 @@ exports.updateOne = (Model) =>
         });
       }
     }
-    if (Model == Review || Model == Comment) {
-      req.body.updateAt = Date.now() - 1000;
-    }
+
     if (Model == Import) {
       const invoice = await Model.findById(req.params.id);
       await invoice.invoice.forEach(async (value, index) => {
@@ -104,6 +116,16 @@ exports.updateOne = (Model) =>
     if (!doc) {
       return next(new AppError("Không tìm thấy dữ liệu với ID này", 404));
     }
+
+    if (Model === Comment) {
+      const rootComment = await findRootCommentByChildren(doc._id.toString());
+      io.getIO().emit("comments", {
+        action: "update",
+        product: doc.product._id.toString(),
+        comment: rootComment,
+      });
+    }
+
     if (Model == Review) {
       Model.calcAverageRatings(doc.product);
     }
@@ -133,10 +155,24 @@ exports.createOne = (Model) =>
     const doc = await Model.create(req.body);
     if (Model === Comment) {
       const data = await Comment.findById(req.body.parent);
+      let action = "create";
       if (data) {
+        action = "update";
         data.children.push(doc.id);
         await data.save({ validateBeforeSave: false });
       }
+      const rootComment = await findRootCommentByChildren(doc._id.toString());
+      const totalData = await Comment.countDocuments({
+        parent: null,
+        product: req.body.product,
+      });
+      const totalPages = Math.ceil(totalData / 3);
+      io.getIO().emit("comments", {
+        action,
+        product: req.body.product,
+        comment: rootComment,
+        totalPages,
+      });
     }
     res.status(201).json({
       status: "success",

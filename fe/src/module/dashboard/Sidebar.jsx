@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { formatPrice } from "../../utils/formatPrice";
-import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../../redux/auth/userSlice";
-import io from "socket.io-client";
-import Config from "../../config"
-import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import useSocket from "../../hooks/useSocket";
 
 const SidebarStyles = styled.div`
   width: 300px;
@@ -159,28 +156,8 @@ const sidebarLinks = [
   },
 ];
 const Sidebar = () => {
-  const dispatch = useDispatch();
   const { current } = useSelector((state) => state.user);
-  useEffect(() => {
-
-    const socket = io(Config.baseUrl);
-    socket.on("recharge", (data) => {
-      if (data.action === "add" && current._id === data.user) {
-        dispatch(getUser());
-        toast.dismiss();
-        toast.success(`Bạn vừa nạp thành công ${data.amount} vào tài khoản.`);
-      }
-      if (data.action === "refund" && current._id === data.user) {
-        dispatch(getUser());
-        toast.dismiss();
-        toast.success(`Bạn vừa được hoàn ${data.amount} từ đơn ${data.order}.`);
-      }
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  useSocket();
   return (
     <SidebarStyles className="sidebar">
       <div className="flex items-center justify-start">

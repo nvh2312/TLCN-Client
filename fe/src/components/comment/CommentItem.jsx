@@ -18,7 +18,7 @@ const CommentItem = ({ comment }) => {
   const [hidden, setHidden] = useState(true);
   const [text, setText] = useState("");
   const [edit, setEdit] = useState(false);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const dispatch = useDispatch();
   const params = useParams();

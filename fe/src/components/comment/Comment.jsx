@@ -6,12 +6,14 @@ import {
   createComment,
   getComment,
   refresh,
+  setCurrentPage,
 } from "../../redux/feedback/commentSlice";
 import CommentList from "./CommentList";
 import Pagination from "react-js-pagination";
 import { action_status } from "../../utils/constants/status";
 import Skeleton from "../skeleton/Skeleton";
 import { toast } from "react-toastify";
+import useSocket from "../../hooks/useSocket";
 
 const Comment = ({ id }) => {
   const [text, setText] = useState("");
@@ -20,11 +22,15 @@ const Comment = ({ id }) => {
     commentAdd,
     commentDelete,
     commentUpdate,
+    resetDelete,
     comment,
     totalPage,
     status,
+    currentPage,
     commentLike,
   } = useSelector((state) => state.comment);
+
+  useSocket();
   const dispatch = useDispatch();
   const { current } = useSelector((state) => state.user);
 
@@ -56,54 +62,57 @@ const Comment = ({ id }) => {
   // console.log("id", id);
 
   useEffect(() => {
+    dispatch(setCurrentPage(1));
+  }, [id]);
+  useEffect(() => {
     try {
       const data = {
         id: id,
-        page: page,
+        page: currentPage,
       };
       dispatch(getComment(data));
     } catch (error) {
       console.log(error.message);
     }
-  }, [page, id]);
+  }, [currentPage,resetDelete]);
 
-  useEffect(() => {
-    if (commentAdd) {
-      const data = {
-        id: id,
-        page: page,
-      };
-      dispatch(getComment(data));
-      dispatch(refresh());
-    }
-    if (commentUpdate) {
-      const data = {
-        id: id,
-        page: page,
-      };
-      dispatch(getComment(data));
-      dispatch(refresh());
-    }
-    if (commentDelete) {
-      const data = {
-        id: id,
-        page: page,
-      };
-      dispatch(getComment(data));
-      dispatch(refresh());
-    }
-    if (commentLike) {
-      const data = {
-        id: id,
-        page: page,
-      };
-      dispatch(getComment(data));
-      dispatch(refresh());
-    }
-  }, [commentAdd, commentUpdate, commentDelete, commentLike]);
+  // useEffect(() => {
+  //   if (commentAdd) {
+  //     const data = {
+  //       id: id,
+  //       page: page,
+  //     };
+  //     dispatch(getComment(data));
+  //     dispatch(refresh());
+  //   }
+  //   if (commentUpdate) {
+  //     const data = {
+  //       id: id,
+  //       page: page,
+  //     };
+  //     dispatch(getComment(data));
+  //     dispatch(refresh());
+  //   }
+  //   if (commentDelete) {
+  //     const data = {
+  //       id: id,
+  //       page: page,
+  //     };
+  //     dispatch(getComment(data));
+  //     dispatch(refresh());
+  //   }
+  //   if (commentLike) {
+  //     const data = {
+  //       id: id,
+  //       page: page,
+  //     };
+  //     dispatch(getComment(data));
+  //     dispatch(refresh());
+  //   }
+  // }, [commentAdd, commentUpdate, commentDelete, commentLike]);
 
   const handlePageClick = (values) => {
-    setPage(values);
+    dispatch(setCurrentPage(values));
   };
 
   return (
@@ -164,6 +173,7 @@ const Comment = ({ id }) => {
               <textarea
                 placeholder="Xin mời bạn để lại câu hỏi, HC.VN sẽ trả lời lại trong 1h, các câu hỏi sau 22h-8h sẽ được trả lời vào sáng hôm sau ..."
                 className="w-full h-[150px] bg-[#f8f8f8] p-5 text-base font-medium rounded-lg resize-none border-2 border-solid"
+                value={text}
                 onChange={(e) => setText(e.target.value)}
               />
               <button
@@ -174,12 +184,12 @@ const Comment = ({ id }) => {
               </button>
             </div>
             <div className="max-w-[1300px]">
-              <CommentList data={comment.data} />
+              <CommentList data={comment} />
             </div>
           </div>
           <div className="flex justify-center items-center mt-2">
             <Pagination
-              activePage={page}
+              activePage={currentPage}
               nextPageText={">"}
               prevPageText={"<"}
               totalItemsCount={totalPage}

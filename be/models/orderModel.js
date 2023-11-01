@@ -76,6 +76,9 @@ orderSchema.pre(/^find/, function (next) {
 
 orderSchema.statics.updateUserBalance = async function (userId, balance) {
   await User.findByIdAndUpdate(userId, { $inc: { balance: balance } });
+  io.getIO().emit("purchase", {
+    user: userId._id,
+  });
 };
 orderSchema.post("save", function () {
   if (this.payments === "số dư")

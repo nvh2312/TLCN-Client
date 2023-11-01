@@ -10,9 +10,9 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { resetCart } from "../../redux/cart/cartSlice";
 import orderApi from "../../api/orderApi";
-import { getUser } from "../../redux/auth/userSlice";
 import userApi from "../../api/userApi";
 import LoadingSpinner from "../../components/loading/LoadingSpinner";
+import useSocket from "../../hooks/useSocket";
 
 const PaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("tiền mặt");
@@ -27,6 +27,8 @@ const PaymentPage = () => {
   const { current } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const data = address.filter((item) => item.setDefault === true)[0];
+
+  useSocket();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -113,7 +115,6 @@ const PaymentPage = () => {
               id: response.data.id,
               total: response.data.totalPrice,
             };
-            if (paymentMethod === "số dư") dispatch(getUser());
             localStorage.setItem("order", JSON.stringify(data1));
           } catch (error) {
             console.log(error.message);
@@ -317,7 +318,7 @@ const PaymentPage = () => {
                   <div className="flex flex-col gap-3">
                     Số dư tài khoản
                     <span className="text-sm text-gray-600">
-                      {current.balance}
+                      {formatPrice(current.balance)}
                     </span>
                   </div>
                 </button>
