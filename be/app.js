@@ -33,7 +33,12 @@ if (process.env.NODE_ENV === "development") {
     })
   );
 } else {
-  app.use(cors());
+  app.use(cors(
+    {
+      origin: "https://hctech.onrender.com",
+      methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
+    }
+  ));
 }
 // Serving static files
 // 1) GLOBAL MIDDLEWARE

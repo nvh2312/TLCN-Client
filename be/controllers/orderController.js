@@ -5,6 +5,7 @@ const AppError = require("./../utils/appError");
 const Product = require("../models/productModel");
 const sendEmail = require("../utils/email");
 const mailTemplate = require("./mailTemplate");
+const io = require("../socket");
 
 exports.checkStatusOrder = catchAsync(async (req, res, next) => {
   if (
@@ -42,6 +43,9 @@ exports.createOrder = catchAsync(async (req, res, next) => {
       $inc: { inventory: -value.quantity },
     });
   }
+  io.getIO().emit("orders", {
+    user: req.user.name,
+  });
   try {
     const domain = `${req.protocol}://${req.get("host")}`;
     const message = mailTemplate(doc, domain);
