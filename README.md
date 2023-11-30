@@ -73,6 +73,8 @@ Chatbot của fb page sẽ tự động trả lời câu hỏi của người d�
 
 Khi người dùng đã thanh toán đơn hàng và đơn hàng bị huỷ sẽ được hoàn tiền vào số dư tài khoản.
 
+19. Đăng xuất tài khoản.
+
 
 * Giao diện các trang chính:
 1. Trang chủ
