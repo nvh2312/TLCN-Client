@@ -15,6 +15,10 @@ const ProductOrder = ({ data }) => {
                 src={item?.product.images[0]}
                 alt=""
                 className="w-[120px] h-[120px]"
+                onError={(e) => {
+                  e.target.src =
+                    "https://res.cloudinary.com/dbekkzxtt/image/upload/v1668578244/dwxqdvfwehpklx9fzx6l.webp";
+                }}
               />
               <div className="flex flex-col items-start gap-y-2">
                 <span className="mt-5 text-base font-medium">
