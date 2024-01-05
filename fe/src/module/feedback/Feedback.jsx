@@ -16,10 +16,12 @@ import { useEffect } from "react";
 import { action_status } from "../../utils/constants/status";
 import FeedbackList from "../feedback/FeedbackList";
 import Skeleton from "../../components/skeleton/Skeleton";
+import axiosClient from "../../api/axiosClient";
 
 const Feelback = ({ id, data }) => {
   const { current } = useSelector((state) => state.user);
   const [page, setPage] = useState(1);
+  const [canFeedback, setCanFeedback] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -61,6 +63,18 @@ const Feelback = ({ id, data }) => {
     };
     dispatch(getFeedback(data));
   }, [id, page]);
+
+  useEffect(() => {
+    const checkFeedBack = async (id) => {
+      const res = await axiosClient.get(
+        `/api/v1/reviews/checkFeedBack?productId=${id}`
+      );
+      if (res.check) setCanFeedback(true);
+    };
+    if (current !== null) {
+      checkFeedBack(id);
+    }
+  }, [id]);
 
   useEffect(() => {
     if (feedbackAdd) {
@@ -161,15 +175,17 @@ const Feelback = ({ id, data }) => {
               Đánh giá & nhận xét {data?.title}
             </span>
             <StatisticFeedback data={feedback} />
-            <div className="flex flex-col items-center gap-y-5 py-5">
-              <span className="text-xl ">Bạn đánh giá sao sản phẩm này</span>
-              <button
-                className="text-lg py-3 px-10 rounded-lg font-medium text-white bg-red-600"
-                onClick={handleClick}
-              >
-                Đánh giá ngay
-              </button>
-            </div>
+            {canFeedback && (
+              <div className="flex flex-col items-center gap-y-5 py-5">
+                <span className="text-xl ">Bạn đánh giá sao sản phẩm này</span>
+                <button
+                  className="text-lg py-3 px-10 rounded-lg font-medium text-white bg-red-600"
+                  onClick={handleClick}
+                >
+                  Đánh giá ngay
+                </button>
+              </div>
+            )}
 
             <FeedbackList data={feedback.data} />
           </div>

@@ -2,6 +2,7 @@ const Review = require("./../models/reviewModel");
 const Order = require("./../models/orderModel");
 const factory = require("./handlerFactory");
 const AppError = require("./../utils/appError");
+const mongoose = require("mongoose");
 const catchAsync = require("./../utils/catchAsync");
 
 exports.setProductUserIds = catchAsync(async (req, res, next) => {
@@ -41,3 +42,18 @@ exports.createReview = factory.createOne(Review);
 exports.updateReview = factory.updateOne(Review);
 exports.deleteReview = factory.deleteOne(Review);
 exports.isOwner = factory.checkPermission(Review);
+exports.canFeedback = catchAsync(async (req, res, next) => {
+  const productId = req.query.productId;
+  const userId = req.user.id;
+  const orders = await Order.aggregate([
+    { $unwind: "$cart" },
+    {
+      $match: {
+        user: mongoose.Types.ObjectId(userId),
+        status: "Success",
+        "cart.product._id": productId,
+      },
+    },
+  ]);
+  return res.status(200).json({ check: orders.length !== 0 });
+});

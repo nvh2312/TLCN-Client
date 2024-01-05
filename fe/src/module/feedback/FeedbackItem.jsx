@@ -89,7 +89,7 @@ const FeedbackItem = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="w-[80%] xl:w-[1100px] bg-[#f3f4f6] mt-3 rounded-lg mx-auto flex flex-col p-5  justify-between gap-y-4">
+        <div className="w-[80%] xl:w-[1100px] 2xl:w-full 2xl:pr-[1.25rem!important] bg-[#f3f4f6] mt-3 rounded-lg mx-auto flex flex-col p-5  justify-between gap-y-4">
           <div className="flex items-center justify-start ">
             <span className="text-base font-medium">Đánh giá: </span> &nbsp;
             <span className="flex items-center gap-x-2">

@@ -16,6 +16,10 @@ router
   );
 router.route("/getTableReview").get(reviewController.getTableReview);
 router
+  .route("/checkFeedBack")
+  .get(
+    authController.protect,reviewController.canFeedback)
+router
   .route("/:id")
   .get(reviewController.getReview)
   .patch(
